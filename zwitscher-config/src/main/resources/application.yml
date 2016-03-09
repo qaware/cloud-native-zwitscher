@@ -1,3 +1,24 @@
+info:
+  component: Zwitscher Config Server
+
+server:
+  port: ${PORT:8888}
+
+management:
+  context-path: /admin
+
+logging:
+  level:
+    ROOT: INFO
+    com.netflix.discovery: INFO
+    org.springframework.cloud: INFO
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+
 ---
 spring:
   cloud:
@@ -5,6 +26,3 @@ spring:
       server:
         native:
           searchLocations: classpath:/config
-
-server:
-  port: 8888

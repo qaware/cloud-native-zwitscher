@@ -1,0 +1,27 @@
+info:
+  component: Zwitscher Zuul Edge Server
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+zuul:
+  ignoredServices: '*'
+  routes:
+    tweets: /tweets/**
+    serviceId: zwitscher-service
+    stripPrefix: false
+
+server:
+  port: ${PORT:8765}
+
+logging:
+  level:
+    ROOT: INFO
+    com.netflix.discovery: INFO
+    org.springframework.cloud: INFO
+    org.springframework.web: DEBUG

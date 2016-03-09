@@ -21,21 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.qaware.cloud.nativ.zwitscher.eureka;
+package de.qaware.cloud.nativ.zwitscher.edge;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
- * The Eureka Server main application class for the Cloud Native Zwitscher showcase.
+ * The Zuul Edge Server main application class for the Cloud Native Zwitscher showcase.
  */
 @SpringBootApplication
-@EnableEurekaServer
-@EnableDiscoveryClient
-public class ZwitscherEurekaApplication {
+@EnableZuulProxy
+public class ZwitscherEdgeApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ZwitscherEurekaApplication.class, args);
+        SpringApplication.run(ZwitscherEdgeApplication.class, args);
     }
 }

@@ -21,21 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.qaware.cloud.nativ.zwitscher.eureka;
+package de.qaware.cloud.nativ.zwitscher.edge;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
-/**
- * The Eureka Server main application class for the Cloud Native Zwitscher showcase.
- */
-@SpringBootApplication
-@EnableEurekaServer
-@EnableDiscoveryClient
-public class ZwitscherEurekaApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ZwitscherEurekaApplication.class, args);
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = ZwitscherEdgeApplication.class)
+@WebAppConfiguration
+public class ZwitscherEdgeApplicationTests {
+
+    @Test
+    public void contextLoads() {
     }
+
 }

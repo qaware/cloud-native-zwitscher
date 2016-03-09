@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: zwitscher-edge
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}

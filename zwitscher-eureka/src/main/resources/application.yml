@@ -1,10 +1,21 @@
----
+info:
+  component: Zwitscher Eureka Server
+
 server:
-  port: 8761
+  port: ${PORT:8761}
+
+management:
+  context-path: /admin
+
+logging:
+  level:
+    ROOT: INFO
+    com.netflix.discovery: INFO
+    org.springframework.cloud: INFO
 
 eureka:
-  instance:
-    hostname: localhost
   client:
     registerWithEureka: false
     fetchRegistry: false
+  server:
+      waitTimeInMsWhenSyncEmpty: 0
