@@ -1,10 +1,3 @@
-import de.gesellix.gradle.docker.tasks.DockerInfoTask
-import de.gesellix.gradle.docker.tasks.DockerPingTask
-import de.gesellix.gradle.docker.tasks.DockerVersionTask
-
-import static groovy.json.JsonOutput.prettyPrint
-import static groovy.json.JsonOutput.toJson
-
 buildscript {
     ext {
         springBootVersion = '1.3.3.RELEASE'
@@ -17,16 +10,16 @@ buildscript {
     dependencies {
         classpath "nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-        classpath "de.gesellix:gradle-docker-plugin:2016-02-08T22-29-47"
+        classpath 'com.bmuschko:gradle-docker-plugin:2.6.6'
     }
 }
 
 allprojects {
-    apply plugin: "de.gesellix.docker"
+    apply plugin: 'com.bmuschko.docker-remote-api'
 
     docker {
-        dockerHost = System.env.DOCKER_HOST ?: 'https://192.168.99.100:2376'
-        certPath = "${System.getProperty('user.home')}/.docker/machine/machines/default"
+        url = System.env.DOCKER_HOST ?: 'https://192.168.99.100:2376'
+        certPath = file("${System.getProperty('user.home')}/.docker/machine/machines/default")
     }
 
     repositories {
@@ -81,23 +74,12 @@ subprojects {
     }
 }
 
-task dockerPing(type: DockerPingTask, group: 'Docker') {
-    doLast {
-        println prettyPrint(toJson(result.content))
-    }
-}
 
-task dockerInfo(type: DockerInfoTask, group: 'Docker') {
-    doLast {
-        println prettyPrint(toJson(info))
-    }
-}
+import com.bmuschko.gradle.docker.tasks.DockerInfo
+import com.bmuschko.gradle.docker.tasks.DockerVersion
 
-task dockerVersion(type: DockerVersionTask, group: 'Docker') {
-    doLast {
-        println prettyPrint(toJson(version))
-    }
-}
+task dockerInfo(type: DockerInfo) {}
+task dockerVersion(type: DockerVersion) {}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.11'

@@ -62,6 +62,12 @@ If everything has started OK, you can access the the services under the followin
 
 ### Docker
 
+To be run the showcase using docker locally please ensure that Docker is running correctly:
+```shell
+$ cd cloud-native-zwitscher
+$ ./gradlew dockerVersion dockerInfo
+```
+
 _To be continued..._
 
 
