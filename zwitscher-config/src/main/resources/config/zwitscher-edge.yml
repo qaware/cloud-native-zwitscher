@@ -1,0 +1,11 @@
+zuul:
+  ignoredServices: '*'
+  routes:
+    tweets:
+      path: /tweets/**
+      serviceId: zwitscher-service
+      stripPrefix: false
+    config:
+      path: /config/**
+      serviceId: zwitscher-config
+      stripPrefix: true

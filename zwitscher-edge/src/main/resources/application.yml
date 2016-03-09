@@ -9,12 +9,8 @@ endpoints:
   health:
     sensitive: false
 
-zuul:
-  ignoredServices: '*'
-  routes:
-    tweets: /tweets/**
-    serviceId: zwitscher-service
-    stripPrefix: false
+management:
+  context-path: /admin
 
 server:
   port: ${PORT:8765}
