@@ -1,0 +1,9 @@
+
+jar {
+	baseName = 'zwitscher-eureka'
+	version = '1.0.0'
+}
+
+dependencies {
+	compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
+}
