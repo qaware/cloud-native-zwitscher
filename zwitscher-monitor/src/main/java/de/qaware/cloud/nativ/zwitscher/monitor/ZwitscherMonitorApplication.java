@@ -23,11 +23,14 @@
  */
 package de.qaware.cloud.nativ.zwitscher.monitor;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.netflix.turbine.EnableTurbine;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * The Hystrix and Turbine monitoring dashboard main application of the Cloud
@@ -37,8 +40,15 @@ import org.springframework.cloud.netflix.turbine.EnableTurbine;
 @EnableDiscoveryClient
 @EnableTurbine
 @EnableHystrixDashboard
+@Controller
 public class ZwitscherMonitorApplication {
+
+    @RequestMapping(path = "/", method = RequestMethod.GET)
+    public String index() {
+        return "forward:/hystrix";
+    }
+
     public static void main(String[] args) {
-        SpringApplication.run(ZwitscherMonitorApplication.class, args);
+        new SpringApplicationBuilder(ZwitscherMonitorApplication.class).web(true).run(args);
     }
 }
