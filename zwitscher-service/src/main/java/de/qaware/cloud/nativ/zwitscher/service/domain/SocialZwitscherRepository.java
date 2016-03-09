@@ -21,25 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.qaware.cloud.nativ.zwitscher.service;
+package de.qaware.cloud.nativ.zwitscher.service.domain;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.springframework.stereotype.Repository;
+
+import java.util.Collections;
 
 /**
- * The Zwitscher service main application of the Cloud Native Zwitscher Showcase.
+ * This implementation uses Spring Social Twitter API to access tweets
+ * from twitter in order to map them to ZwitscherMessages.
  */
-@SpringBootApplication
-@EnableDiscoveryClient
-@EnableHystrix
-@EnableCircuitBreaker
-@EnableFeignClients
-public class ZwitscherServiceApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ZwitscherServiceApplication.class, args);
+@Repository
+public class SocialZwitscherRepository implements ZwitscherRepository {
+    @Override
+    @HystrixCommand(fallbackMethod = "noResults")
+    public Iterable<ZwitscherMessage> search(String q) {
+        return null;
+    }
+
+    protected Iterable<ZwitscherMessage> noResults(String q) {
+        return Collections.emptyList();
     }
 }

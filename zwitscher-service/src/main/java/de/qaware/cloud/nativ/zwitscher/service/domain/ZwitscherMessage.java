@@ -21,25 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.qaware.cloud.nativ.zwitscher.service;
+package de.qaware.cloud.nativ.zwitscher.service.domain;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.hateoas.ResourceSupport;
 
 /**
- * The Zwitscher service main application of the Cloud Native Zwitscher Showcase.
+ * Our simple ZwitscherMessage data class.
  */
-@SpringBootApplication
-@EnableDiscoveryClient
-@EnableHystrix
-@EnableCircuitBreaker
-@EnableFeignClients
-public class ZwitscherServiceApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ZwitscherServiceApplication.class, args);
-    }
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class ZwitscherMessage extends ResourceSupport {
+    private final String message;
 }

@@ -21,25 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.qaware.cloud.nativ.zwitscher.service;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+package de.qaware.cloud.nativ.zwitscher.service.domain;
 
 /**
- * The Zwitscher service main application of the Cloud Native Zwitscher Showcase.
+ * The ZwitscherRepository provides methods to work with ZwitscherMessages.
  */
-@SpringBootApplication
-@EnableDiscoveryClient
-@EnableHystrix
-@EnableCircuitBreaker
-@EnableFeignClients
-public class ZwitscherServiceApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ZwitscherServiceApplication.class, args);
-    }
+public interface ZwitscherRepository {
+    /**
+     * Find and return all ZwitscherMessages matching the given query.
+     *
+     * @param q the query string up to 500 characters
+     * @return a collection of ZwitscherMessages
+     */
+    Iterable<ZwitscherMessage> search(String q);
 }
