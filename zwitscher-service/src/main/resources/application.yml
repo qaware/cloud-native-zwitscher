@@ -1,0 +1,15 @@
+info:
+  component: Zwitscher Service
+
+management:
+  context-path: /admin
+
+server:
+  port: ${PORT:8080}
+
+logging:
+  level:
+    ROOT: INFO
+    com.netflix.discovery: INFO
+    org.springframework.cloud: INFO
+    org.springframework.web: DEBUG

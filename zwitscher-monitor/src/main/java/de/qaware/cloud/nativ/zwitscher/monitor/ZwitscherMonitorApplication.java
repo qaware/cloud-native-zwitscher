@@ -21,21 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.qaware.cloud.nativ.zwitscher.eureka;
+package de.qaware.cloud.nativ.zwitscher.monitor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
 /**
- * The Eureka server main application class for the Cloud Native Zwitscher showcase.
+ * The Hystrix and Turbine monitoring dashboard main application of the Cloud
+ * Native Zwitscher showcase.
  */
 @SpringBootApplication
-@EnableEurekaServer
 @EnableDiscoveryClient
-public class ZwitscherEurekaApplication {
+@EnableTurbine
+@EnableHystrixDashboard
+public class ZwitscherMonitorApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ZwitscherEurekaApplication.class, args);
+        SpringApplication.run(ZwitscherMonitorApplication.class, args);
     }
 }

@@ -1,5 +1,5 @@
 include ':zwitscher-eureka'
 include ':zwitscher-config'
-// include ':zwitscher-service'
-// include ':zwitscher-monitor'
+include ':zwitscher-service'
+include ':zwitscher-monitor'
 include ':zwitscher-edge'

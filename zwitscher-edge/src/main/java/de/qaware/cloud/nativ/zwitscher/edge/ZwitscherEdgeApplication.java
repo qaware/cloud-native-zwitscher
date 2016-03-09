@@ -26,14 +26,16 @@ package de.qaware.cloud.nativ.zwitscher.edge;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
- * The Zuul Edge Server main application class for the Cloud Native Zwitscher showcase.
+ * The Zuul edge server main application class of the Cloud Native Zwitscher showcase.
  */
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableZuulProxy
+@EnableHystrix
 public class ZwitscherEdgeApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZwitscherEdgeApplication.class, args);

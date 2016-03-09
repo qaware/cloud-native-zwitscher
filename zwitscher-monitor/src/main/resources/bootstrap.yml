@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: zwitscher-monitor
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+
+eureka:
+  instance:
+    nonSecurePort: ${PORT:8989}
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}

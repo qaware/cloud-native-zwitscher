@@ -1,0 +1,26 @@
+info:
+  component: Zwitscher Monitoring Server
+
+management:
+  context-path: /admin
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+server:
+  port: ${PORT:8989}
+
+logging:
+  level:
+    ROOT: INFO
+    com.netflix.discovery: INFO
+    org.springframework.cloud: INFO
+    org.springframework.web: DEBUG
+
+turbine:
+  aggregator:
+    clusterConfig: zwitscher
+  appConfig: zwitscher-service,zwitscher-edge

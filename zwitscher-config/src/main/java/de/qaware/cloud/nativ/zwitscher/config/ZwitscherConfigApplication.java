@@ -29,7 +29,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
- * The Spring Cloud Config Server main application class for the Cloud Native Zwitscher showcase.
+ * The config server main application class for the Cloud Native Zwitscher showcase.
  */
 @SpringBootApplication
 @EnableConfigServer
