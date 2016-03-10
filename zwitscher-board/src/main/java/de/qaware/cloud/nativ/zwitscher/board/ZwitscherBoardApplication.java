@@ -25,11 +25,21 @@ package de.qaware.cloud.nativ.zwitscher.board;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 
+/**
+ * The Zwitscher board UI main application of the Cloud Native Zwitscher Showcase.
+ */
 @SpringBootApplication
+@EnableDiscoveryClient
+@EnableHystrix
+@EnableCircuitBreaker
+@EnableFeignClients
 public class ZwitscherBoardApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ZwitscherBoardApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ZwitscherBoardApplication.class, args);
+    }
 }
