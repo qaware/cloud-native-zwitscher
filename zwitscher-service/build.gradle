@@ -1,6 +1,6 @@
 jar {
     baseName = 'zwitscher-service'
-    version = '1.0.0'
+    version = "$version"
 }
 
 dependencies {
@@ -14,4 +14,16 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-feign'
     compile 'org.springframework.cloud:spring-cloud-starter-ribbon'
     compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
+}
+
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
+
+task buildDockerImage(type: DockerBuildImage) {
+    inputDir = projectDir
+    tag = "zwitscher-service:$version"
+}
+
+task removeDockerImage(type: DockerRemoveImage) {
+    imageId = "zwitscher-service:$version"
 }

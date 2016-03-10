@@ -14,9 +14,9 @@ import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
 
 task buildDockerImage(type: DockerBuildImage) {
     inputDir = projectDir
-    tag = "zwitscher-config:1.0.0"
+    tag = "zwitscher-config:$version"
 }
 
 task removeDockerImage(type: DockerRemoveImage) {
-    imageId = "zwitscher-config:1.0.0"
+    imageId = "zwitscher-config:$version"
 }

@@ -5,6 +5,10 @@ zuul:
       path: /tweets/**
       serviceId: zwitscher-service
       stripPrefix: false
+    quote:
+      path: /quote
+      serviceId: zwitscher-service
+      stripPrefix: false
     config:
       path: /config/**
       serviceId: zwitscher-config
