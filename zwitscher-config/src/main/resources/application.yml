@@ -1,6 +1,15 @@
 info:
   component: Zwitscher Config Server
 
+endpoints:
+  info:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    enabled: true
+    sensitive: false
+
 server:
   port: 8888
 

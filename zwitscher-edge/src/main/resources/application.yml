@@ -2,11 +2,12 @@ info:
   component: Zwitscher Zuul Edge Server
 
 endpoints:
-  restart:
+  info:
     enabled: true
   shutdown:
     enabled: true
   health:
+    enabled: true
     sensitive: false
 
 management:
@@ -21,3 +22,9 @@ logging:
     com.netflix.discovery: INFO
     org.springframework.cloud: INFO
     org.springframework.web: DEBUG
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
