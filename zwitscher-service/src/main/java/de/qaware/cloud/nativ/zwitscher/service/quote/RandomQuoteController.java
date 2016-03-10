@@ -42,7 +42,7 @@ import org.springframework.web.bind.annotation.RestController;
  * that goes against a public quote API service.
  */
 @RestController
-@ExposesResourceFor(RandomQuoteController.class)
+@ExposesResourceFor(RandomQuote.class)
 @RequestMapping("/quote")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RandomQuoteController {

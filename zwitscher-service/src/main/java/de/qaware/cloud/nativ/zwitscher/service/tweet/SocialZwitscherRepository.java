@@ -37,7 +37,7 @@ public class SocialZwitscherRepository implements ZwitscherRepository {
     @Override
     @HystrixCommand(fallbackMethod = "noResults")
     public Iterable<ZwitscherMessage> search(String q) {
-        return null;
+        return noResults(q);
     }
 
     protected Iterable<ZwitscherMessage> noResults(String q) {
