@@ -21,17 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.qaware.cloud.nativ.zwitscher.service.domain;
+package de.qaware.cloud.nativ.zwitscher.service.tweet;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.hateoas.ResourceSupport;
 
 /**
- * The ZwitscherRepository provides methods to work with ZwitscherMessages.
+ * Our simple ZwitscherMessage data class.
  */
-public interface ZwitscherRepository {
-    /**
-     * Find and return all ZwitscherMessages matching the given query.
-     *
-     * @param q the query string up to 500 characters
-     * @return a collection of ZwitscherMessages
-     */
-    Iterable<ZwitscherMessage> search(String q);
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class ZwitscherMessage extends ResourceSupport {
+    private final String message;
 }

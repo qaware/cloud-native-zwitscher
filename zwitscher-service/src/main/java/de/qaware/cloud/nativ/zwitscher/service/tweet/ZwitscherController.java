@@ -21,10 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.qaware.cloud.nativ.zwitscher.service.web;
+package de.qaware.cloud.nativ.zwitscher.service.tweet;
 
-import de.qaware.cloud.nativ.zwitscher.service.domain.ZwitscherMessage;
-import de.qaware.cloud.nativ.zwitscher.service.domain.ZwitscherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityLinks;
@@ -53,12 +51,11 @@ public class ZwitscherController {
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<Resources<ZwitscherMessage>> tweets(@RequestParam("q") String q) {
-        Resources<ZwitscherMessage> resources = new Resources<>(repository.search(q));
+        Iterable<ZwitscherMessage> zwitscherMessages = repository.search(q);
 
-        ZwitscherMessage m = new ZwitscherMessage("test");
-
+        Resources<ZwitscherMessage> resources = new Resources<>(zwitscherMessages);
         resources.add(entityLinks.linkToCollectionResource(ZwitscherMessage.class));
+
         return new ResponseEntity<>(resources, HttpStatus.OK);
     }
-
 }

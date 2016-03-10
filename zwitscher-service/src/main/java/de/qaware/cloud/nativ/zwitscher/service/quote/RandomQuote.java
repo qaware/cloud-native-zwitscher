@@ -21,26 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.qaware.cloud.nativ.zwitscher.service.domain;
+package de.qaware.cloud.nativ.zwitscher.service.quote;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import org.springframework.stereotype.Repository;
-
-import java.util.Collections;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.hateoas.ResourceSupport;
 
 /**
- * This implementation uses Spring Social Twitter API to access tweets
- * from twitter in order to map them to ZwitscherMessages.
+ * The data class for our RandomQuote. Only contains the quote and author field
+ * of the original response obtained from Quotes on Design.
  */
-@Repository
-public class SocialZwitscherRepository implements ZwitscherRepository {
-    @Override
-    @HystrixCommand(fallbackMethod = "noResults")
-    public Iterable<ZwitscherMessage> search(String q) {
-        return null;
-    }
-
-    protected Iterable<ZwitscherMessage> noResults(String q) {
-        return Collections.emptyList();
-    }
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class RandomQuote extends ResourceSupport {
+    private String quote;
+    private String author;
 }

@@ -23,19 +23,37 @@
  */
 package de.qaware.cloud.nativ.zwitscher.service;
 
+import de.qaware.cloud.nativ.zwitscher.service.quote.QuotesOnDesignClient;
+import de.qaware.cloud.nativ.zwitscher.service.quote.RandomQuote;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ZwitscherServiceApplication.class)
 @WebAppConfiguration
 public class ZwitscherServiceApplicationTests {
 
+    @Autowired
+    private QuotesOnDesignClient quoteClient;
+
     @Test
     public void contextLoads() {
     }
 
+    @Test
+    public void testQuotesOnDesignFeignClient() throws Exception {
+        RandomQuote quote = quoteClient.getRandomQuote();
+        assertThat(quote, is(notNullValue()));
+
+        assertThat(quote.getQuote(), is(notNullValue()));
+        assertThat(quote.getAuthor(), is(notNullValue()));
+    }
 }

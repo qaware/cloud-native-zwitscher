@@ -1,0 +1,62 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2016 QAware GmbH, Munich, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package de.qaware.cloud.nativ.zwitscher.service.quote;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityLinks;
+import org.springframework.hateoas.ExposesResourceFor;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * A REST controller to produce random quotes. The client used here is a feign client
+ * that goes against a public quote API service.
+ */
+@RestController
+@ExposesResourceFor(RandomQuoteController.class)
+@RequestMapping("/quote")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class RandomQuoteController {
+
+    private final QuotesOnDesignClient quoteClient;
+    private final EntityLinks entityLinks;
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpEntity<Resource<RandomQuote>> quote() {
+        RandomQuote quote = quoteClient.getRandomQuote();
+
+        Link link = entityLinks.linkToSingleResource(quote);
+        Resource<RandomQuote> resource = new Resource<>(quote, link);
+
+        return new ResponseEntity<>(resource, HttpStatus.OK);
+    }
+}

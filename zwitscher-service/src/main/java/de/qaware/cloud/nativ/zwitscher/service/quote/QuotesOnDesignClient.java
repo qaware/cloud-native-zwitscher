@@ -21,17 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.qaware.cloud.nativ.zwitscher.service.domain;
+package de.qaware.cloud.nativ.zwitscher.service.quote;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.springframework.hateoas.ResourceSupport;
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Our simple ZwitscherMessage data class.
+ * A declarative Feign REST client to access the external Quotes on Design service.
  */
-@Data
-@EqualsAndHashCode(callSuper = true)
-public class ZwitscherMessage extends ResourceSupport {
-    private final String message;
+@FeignClient(name = "quotesOnDesign", url = "http://quotesondesign.com",
+        configuration = QuotesOnDesignConfiguration.class)
+public interface QuotesOnDesignClient {
+    /**
+     * Obtain a random quote by GET /api/3.0/api-3.0.json
+     *
+     * @return a random quote
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/api/3.0/api-3.0.json")
+    RandomQuote getRandomQuote();
 }
