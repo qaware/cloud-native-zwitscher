@@ -74,7 +74,6 @@ subprojects {
     }
 }
 
-
 import com.bmuschko.gradle.docker.tasks.DockerInfo
 import com.bmuschko.gradle.docker.tasks.DockerVersion
 

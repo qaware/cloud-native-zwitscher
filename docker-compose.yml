@@ -1,0 +1,6 @@
+zwitscher-eureka:
+  image: "zwitscher-eureka:1.0.0"
+  hostname: zwitscher-eureka
+  ports:
+    - "8761:8761"
+

@@ -7,3 +7,15 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
 }
+
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
+
+task buildDockerImage(type: DockerBuildImage) {
+    inputDir = projectDir
+    tag = "zwitscher-eureka:1.0.0"
+}
+
+task removeDockerImage(type: DockerRemoveImage) {
+    imageId = "zwitscher-eureka:1.0.0"
+}
