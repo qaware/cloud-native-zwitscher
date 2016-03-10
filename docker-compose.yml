@@ -33,6 +33,21 @@ zwitscherservice:
   ports:
     - "8080:8080"
 
+zwitscherboard:
+  image: zwitscher-board:1.0.0
+  mem_limit: 128M
+  hostname: zwitscherboard
+  links:
+    - zwitschereureka
+    - zwitscherconfig
+    - zwitscherservice
+  environment:
+     EUREKA_HOST: zwitschereureka
+     EUREKA_PORT: 8761
+     SPRING_PROFILES_ACTIVE: docker
+  ports:
+    - "8081:8081"
+
 zwitscheredge:
   image: zwitscher-edge:1.0.0
   mem_limit: 128M
@@ -41,6 +56,7 @@ zwitscheredge:
     - zwitschereureka
     - zwitscherconfig
     - zwitscherservice
+    - zwitscherboard
   environment:
      EUREKA_HOST: zwitschereureka
      EUREKA_PORT: 8761
@@ -56,6 +72,7 @@ zwitschermonitor:
     - zwitschereureka
     - zwitscherconfig
     - zwitscherservice
+    - zwitscherboard
     - zwitscheredge
   environment:
      EUREKA_HOST: zwitschereureka

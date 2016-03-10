@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: zwitscher-board
+  cloud:
+    config:
+      enabled: true
+      discovery:
+        enabled: true
+        serviceId: ZWITSCHER-CONFIG
+
+eureka:
+  instance:
+    nonSecurePort: ${server.port:8081}
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/

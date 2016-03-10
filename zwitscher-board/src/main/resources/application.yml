@@ -1,0 +1,5 @@
+info:
+  component: Zwitscher Board UI
+
+server:
+  port: 8081

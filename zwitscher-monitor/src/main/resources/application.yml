@@ -1,35 +1,10 @@
 info:
   component: Zwitscher Monitoring Server
 
-endpoints:
-  info:
-    enabled: true
-  shutdown:
-    enabled: true
-  health:
-    enabled: true
-    sensitive: false
-
-management:
-  context-path: /admin
-
 server:
   port: 8989
-
-logging:
-  level:
-    ROOT: INFO
-    com.netflix.discovery: INFO
-    org.springframework.cloud: INFO
-    org.springframework.web: DEBUG
-
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 10
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
 
 turbine:
   aggregator:
     clusterConfig: zwitscher
-  appConfig: zwitscher-service,zwitscher-edge
+  appConfig: zwitscher-service,zwitscher-board,zwitscher-edge

@@ -1,0 +1,28 @@
+jar {
+	baseName = 'zwitscher-board'
+    version = "$version"
+}
+
+dependencies {
+	compile('org.springframework.cloud:spring-cloud-starter-config')
+	compile('org.springframework.cloud:spring-cloud-starter-eureka')
+
+	compile('org.springframework.cloud:spring-cloud-starter-feign')
+	compile('org.springframework.cloud:spring-cloud-starter-hystrix')
+	compile('org.springframework.cloud:spring-cloud-starter-ribbon')
+
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-web')
+}
+
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
+
+task buildDockerImage(type: DockerBuildImage) {
+    inputDir = projectDir
+    tag = "zwitscher-board:$version"
+}
+
+task removeDockerImage(type: DockerRemoveImage) {
+    imageId = "zwitscher-board:$version"
+}

@@ -1,26 +1,8 @@
 info:
   component: Zwitscher Eureka Server
 
-endpoints:
-  info:
-    enabled: true
-  shutdown:
-    enabled: true
-  health:
-    enabled: true
-    sensitive: false
-
-management:
-  context-path: /admin
-
 server:
   port: 8761
-
-logging:
-  level:
-    ROOT: INFO
-    com.netflix.discovery: INFO
-    org.springframework.cloud: INFO
 
 eureka:
   client:
