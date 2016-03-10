@@ -2,7 +2,7 @@ info:
   component: Zwitscher Config Server
 
 server:
-  port: ${PORT:8888}
+  port: 8888
 
 management:
   context-path: /admin

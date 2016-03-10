@@ -2,7 +2,7 @@ info:
   component: Zwitscher Eureka Server
 
 server:
-  port: ${PORT:8761}
+  port: 8761
 
 management:
   context-path: /admin

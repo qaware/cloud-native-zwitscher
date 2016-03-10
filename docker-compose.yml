@@ -1,6 +1,16 @@
-zwitscher-eureka:
+zwitschereureka:
   image: "zwitscher-eureka:1.0.0"
-  hostname: zwitscher-eureka
+  hostname: zwitschereureka
   ports:
     - "8761:8761"
 
+zwitscherconfig:
+  image: "zwitscher-config:1.0.0"
+  hostname: zwitscherconfig
+  links:
+    - zwitschereureka
+  environment:
+    EUREKA_HOST: zwitschereureka
+    EUREKA_PORT: 8761
+  ports:
+    - "8888:8888"
