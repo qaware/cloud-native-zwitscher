@@ -5,6 +5,14 @@ spring:
   profiles:
     active: native
 
+encrypt:
+  failOnError: false
+  keyStore:
+    location: classpath:/server.jks
+    password: ${KEYSTORE_PASSWORD:letmein} # don't use a default in production
+    alias: configkey
+    secret: ${KEY_PASSWORD:changeme} # don't use a default in production
+
 eureka:
   instance:
     nonSecurePort: ${server.port:8888}
