@@ -11,7 +11,7 @@ endpoints:
     enabled: true
 
 server:
-  port: ${PORT:8989}
+  port: 8989
 
 logging:
   level:

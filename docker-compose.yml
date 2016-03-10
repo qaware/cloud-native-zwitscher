@@ -1,11 +1,15 @@
 zwitschereureka:
   image: "zwitscher-eureka:1.0.0"
+  mem_limit: 128M
   hostname: zwitschereureka
+  environment:
+    JAVA_OPTS: "-Xmx128m -Djava.security.egd=file:/dev/./urandom"
   ports:
     - "8761:8761"
 
 zwitscherconfig:
   image: "zwitscher-config:1.0.0"
+  mem_limit: 128M
   hostname: zwitscherconfig
   links:
     - zwitschereureka
@@ -14,3 +18,48 @@ zwitscherconfig:
     EUREKA_PORT: 8761
   ports:
     - "8888:8888"
+
+zwitscherservice:
+  image: zwitscher-service:1.0.0
+  mem_limit: 128M
+  hostname: zwitscherservice
+  links:
+    - zwitschereureka
+    - zwitscherconfig
+  environment:
+     EUREKA_HOST: zwitschereureka
+     EUREKA_PORT: 8761
+     SPRING_PROFILES_ACTIVE: docker
+  ports:
+    - "8080:8080"
+
+zwitscheredge:
+  image: zwitscher-edge:1.0.0
+  mem_limit: 128M
+  hostname: zwitscheredge
+  links:
+    - zwitschereureka
+    - zwitscherconfig
+    - zwitscherservice
+  environment:
+     EUREKA_HOST: zwitschereureka
+     EUREKA_PORT: 8761
+     SPRING_PROFILES_ACTIVE: docker
+  ports:
+    - "8765:8765"
+
+zwitschermonitor:
+  image: zwitscher-monitor:1.0.0
+  mem_limit: 128M
+  hostname: zwitschermonitor
+  links:
+    - zwitschereureka
+    - zwitscherconfig
+    - zwitscherservice
+    - zwitscheredge
+  environment:
+     EUREKA_HOST: zwitschereureka
+     EUREKA_PORT: 8761
+     SPRING_PROFILES_ACTIVE: docker
+  ports:
+    - "8989:8989"

@@ -8,4 +8,4 @@ RUN chmod 755 /opt/zwitscher-eureka/zwitscher-eureka.jar
 ENV JAVA_OPTS -Xmx128m -Djava.security.egd=file:/dev/./urandom
 
 EXPOSE 8761
-ENTRYPOINT ["/opt/zwitscher-eureka/zwitscher-eureka.jar"]
+ENTRYPOINT exec java $JAVA_OPTS -jar /opt/zwitscher-eureka/zwitscher-eureka.jar

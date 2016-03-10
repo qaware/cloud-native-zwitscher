@@ -3,4 +3,14 @@ spring:
     name: zwitscher-edge
   cloud:
     config:
-      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+      enabled: true
+      discovery:
+        enabled: true
+        serviceId: ZWITSCHER-CONFIG
+
+eureka:
+  instance:
+    nonSecurePort: ${server.port:8765}
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/

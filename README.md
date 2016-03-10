@@ -62,13 +62,40 @@ If everything has started OK, you can access the the services under the followin
 
 ### Docker
 
-To be run the showcase using docker locally please ensure that Docker is running correctly:
+To run the complete showcase using docker locally, please ensure that Docker is running and can be accessed
+by Gradle correctly:
 ```shell
 $ cd cloud-native-zwitscher
 $ ./gradlew dockerVersion dockerInfo
 ```
 
-_To be continued..._
+If the connection to the Docker daemon can be established, you will see some version and detail information printed
+in the console. Assuming you have already build the project, you need to build the Docker images:
+In order to compile and run the examples you do not need much. A recent JDK8 needs to
+be available in your SEU.
+```shell
+$ ./gradlew buildDockerImage
+```
+
+Once this is done, open a Docker terminal and issue the following command in the project directory:
+
+```shell
+$ cd cloud-native-zwitscher
+$ docker-compose up
+```
+
+This will start all the Docker images in the correct order. The instances can then be accessed via their known ports
+and the IP address of your Docker installation, usually something like `192.168.99.100`.
+
+To shutdown and remove everything again, kill and remove the Docker containers first, and finally you can remove the
+Docker images again if you wish.
+
+```shell
+$ Press CTRL+C
+$ docker-compose kill
+$ docker-compose rm
+$ ./gradlew removeDockerImage
+```
 
 
 ### Mesos with Kubernetes
