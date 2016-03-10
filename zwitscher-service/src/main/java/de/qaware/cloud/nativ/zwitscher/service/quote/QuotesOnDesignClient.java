@@ -31,7 +31,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * A declarative Feign REST client to access the external Quotes on Design service.
  */
 @FeignClient(name = "quotesOnDesign", url = "http://quotesondesign.com",
-        configuration = QuotesOnDesignConfiguration.class)
+        configuration = QuotesOnDesignConfiguration.class,
+        fallback = QuotesOnDesignFallback.class)
 public interface QuotesOnDesignClient {
     /**
      * Obtain a random quote by GET /api/3.0/api-3.0.json
@@ -41,3 +42,5 @@ public interface QuotesOnDesignClient {
     @RequestMapping(method = RequestMethod.GET, value = "/api/3.0/api-3.0.json")
     RandomQuote getRandomQuote();
 }
+
+

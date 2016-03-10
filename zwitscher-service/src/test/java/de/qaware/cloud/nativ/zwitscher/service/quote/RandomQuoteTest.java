@@ -23,21 +23,17 @@
  */
 package de.qaware.cloud.nativ.zwitscher.service.quote;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import org.springframework.hateoas.ResourceSupport;
+import org.junit.Test;
 
-/**
- * The data class for our RandomQuote. Only contains the quote and author field
- * of the original response obtained from Quotes on Design.
- */
-@Data
-@EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
-@AllArgsConstructor
-public class RandomQuote extends ResourceSupport {
-    private String quote;
-    private String author;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
+public class RandomQuoteTest {
+
+    @Test
+    public void testAllArgsConstructor() throws Exception {
+        RandomQuote quote = new RandomQuote("quote", "author");
+        assertThat(quote.getQuote(), is("quote"));
+        assertThat(quote.getAuthor(), is("author"));
+    }
 }
