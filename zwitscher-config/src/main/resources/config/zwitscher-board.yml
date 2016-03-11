@@ -1,6 +1,7 @@
 board:
   title: Zwitscher Board UI
   headline: Random Quote on Design
+  zwitscherUrl: http://zwitscher-service/tweets?q={q}
 
 endpoints:
   info:
@@ -13,10 +14,10 @@ endpoints:
 
 logging:
   level:
-    ROOT: INFO
     com.netflix.discovery: INFO
     org.springframework.cloud: INFO
     org.springframework.web: DEBUG
+    de.qaware.cloud.nativ.zwitscher: DEBUG
 
 management:
   context-path: /admin

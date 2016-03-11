@@ -19,10 +19,10 @@ endpoints:
 
 logging:
   level:
-    ROOT: INFO
     com.netflix.discovery: INFO
     org.springframework.cloud: INFO
     org.springframework.web: DEBUG
+    de.qaware.cloud.nativ.zwitscher: DEBUG
 
 management:
   context-path: /admin
