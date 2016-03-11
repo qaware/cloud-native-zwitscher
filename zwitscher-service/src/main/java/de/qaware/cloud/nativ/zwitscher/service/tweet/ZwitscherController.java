@@ -25,9 +25,6 @@ package de.qaware.cloud.nativ.zwitscher.service.tweet;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.EntityLinks;
-import org.springframework.hateoas.ExposesResourceFor;
-import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,25 +34,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
+
 /**
- * A simple HATEOS REST controller to work with ZwitscherMessages.
+ * A simple REST controller to work with ZwitscherMessages.
  */
 @RestController
-@ExposesResourceFor(ZwitscherMessage.class)
 @RequestMapping("/tweets")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ZwitscherController {
 
     private final ZwitscherRepository repository;
-    private final EntityLinks entityLinks;
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<Resources<ZwitscherMessage>> tweets(@RequestParam("q") String q) {
-        Iterable<ZwitscherMessage> zwitscherMessages = repository.search(q);
-
-        Resources<ZwitscherMessage> resources = new Resources<>(zwitscherMessages);
-        resources.add(entityLinks.linkToCollectionResource(ZwitscherMessage.class));
-
-        return new ResponseEntity<>(resources, HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public HttpEntity<Collection<ZwitscherMessage>> tweets(@RequestParam("q") String q) {
+        Collection<ZwitscherMessage> zwitscherMessages = repository.search(q);
+        return new ResponseEntity<>(zwitscherMessages, HttpStatus.OK);
     }
 }

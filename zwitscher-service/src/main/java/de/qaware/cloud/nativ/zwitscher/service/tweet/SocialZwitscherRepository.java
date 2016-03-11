@@ -24,8 +24,11 @@
 package de.qaware.cloud.nativ.zwitscher.service.tweet;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -33,14 +36,16 @@ import java.util.Collections;
  * from twitter in order to map them to ZwitscherMessages.
  */
 @Repository
+@Slf4j
 public class SocialZwitscherRepository implements ZwitscherRepository {
     @Override
     @HystrixCommand(fallbackMethod = "noResults")
-    public Iterable<ZwitscherMessage> search(String q) {
-        return noResults(q);
+    public Collection<ZwitscherMessage> search(String q) {
+        return Arrays.asList(new ZwitscherMessage("Test Tweet"));
     }
 
-    protected Iterable<ZwitscherMessage> noResults(String q) {
+    protected Collection<ZwitscherMessage> noResults(String q) {
+        log.warn("Using fallback ZwitscherMessage results.");
         return Collections.emptyList();
     }
 }

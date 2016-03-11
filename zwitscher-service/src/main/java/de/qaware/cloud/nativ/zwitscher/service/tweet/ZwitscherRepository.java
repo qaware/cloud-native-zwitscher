@@ -23,6 +23,8 @@
  */
 package de.qaware.cloud.nativ.zwitscher.service.tweet;
 
+import java.util.Collection;
+
 /**
  * The ZwitscherRepository provides methods to work with ZwitscherMessages.
  */
@@ -33,5 +35,5 @@ public interface ZwitscherRepository {
      * @param q the query string up to 500 characters
      * @return a collection of ZwitscherMessages
      */
-    Iterable<ZwitscherMessage> search(String q);
+    Collection<ZwitscherMessage> search(String q);
 }

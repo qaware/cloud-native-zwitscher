@@ -23,24 +23,18 @@
  */
 package de.qaware.cloud.nativ.zwitscher.service.quote;
 
-import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
- * A declarative Feign REST client to access the external Quotes on Design service.
+ * A fallback implementation for the QuotesOnDesignClient.
  */
-@FeignClient(name = "quotesOnDesign", url = "http://quotesondesign.com",
-        configuration = QuotesOnDesignConfiguration.class,
-        fallback = RandomQuoteFallback.class)
-public interface QuotesOnDesignClient {
-    /**
-     * Obtain a random quote by GET /api/3.0/api-3.0.json
-     *
-     * @return a random quote
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/api/3.0/api-3.0.json")
-    RandomQuote getRandomQuote();
+@Component
+@Slf4j
+public class RandomQuoteFallback implements QuotesOnDesignClient {
+    @Override
+    public RandomQuote getRandomQuote() {
+        log.warn("Using fallback for RandomQuote.");
+        return new RandomQuote("Everything fails all the time.", "Unknown");
+    }
 }
-
-

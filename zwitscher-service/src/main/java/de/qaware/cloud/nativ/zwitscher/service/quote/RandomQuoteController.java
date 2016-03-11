@@ -25,10 +25,6 @@ package de.qaware.cloud.nativ.zwitscher.service.quote;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.hateoas.EntityLinks;
-import org.springframework.hateoas.ExposesResourceFor;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -42,7 +38,6 @@ import org.springframework.web.bind.annotation.RestController;
  * that goes against a public quote API service.
  */
 @RestController
-@ExposesResourceFor(RandomQuote.class)
 @RequestMapping("/quote")
 public class RandomQuoteController {
 
@@ -50,16 +45,9 @@ public class RandomQuoteController {
     @Qualifier("de.qaware.cloud.nativ.zwitscher.service.quote.QuotesOnDesignClient")
     private QuotesOnDesignClient quoteClient;
 
-    @Autowired
-    private EntityLinks entityLinks;
-
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<Resource<RandomQuote>> quote() {
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public HttpEntity<RandomQuote> quote() {
         RandomQuote quote = quoteClient.getRandomQuote();
-
-        Link link = entityLinks.linkToSingleResource(quote);
-        Resource<RandomQuote> resource = new Resource<>(quote, link);
-
-        return new ResponseEntity<>(resource, HttpStatus.OK);
+        return new ResponseEntity<>(quote, HttpStatus.OK);
     }
 }

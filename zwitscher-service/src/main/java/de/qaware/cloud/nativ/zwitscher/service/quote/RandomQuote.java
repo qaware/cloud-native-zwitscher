@@ -25,32 +25,17 @@ package de.qaware.cloud.nativ.zwitscher.service.quote;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.hateoas.ResourceSupport;
-import org.springframework.stereotype.Component;
 
 /**
  * The data class for our RandomQuote. Only contains the quote and author field
  * of the original response obtained from Quotes on Design.
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class RandomQuote extends ResourceSupport {
+public class RandomQuote {
     private String quote;
     private String author;
-
-    /**
-     * A fallback implementation for the QuotesOnDesignClient.
-     */
-    @Component
-    class Fallback implements QuotesOnDesignClient {
-        @Override
-        public RandomQuote getRandomQuote() {
-            return new RandomQuote("Everything fails all the time.", "Unknown");
-        }
-    }
 
 }

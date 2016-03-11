@@ -24,14 +24,11 @@
 package de.qaware.cloud.nativ.zwitscher.service.tweet;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.springframework.hateoas.ResourceSupport;
 
 /**
  * Our simple ZwitscherMessage data class.
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class ZwitscherMessage extends ResourceSupport {
+public class ZwitscherMessage {
     private final String message;
 }
