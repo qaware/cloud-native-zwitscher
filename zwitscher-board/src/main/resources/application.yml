@@ -3,3 +3,5 @@ info:
 
 server:
   port: 8081
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 30000
