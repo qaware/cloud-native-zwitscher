@@ -7,3 +7,28 @@ zuul:
     web:
       path: /**
       serviceId: zwitscher-board
+
+endpoints:
+  info:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    enabled: true
+    sensitive: false
+
+logging:
+  level:
+    ROOT: INFO
+    com.netflix.discovery: INFO
+    org.springframework.cloud: INFO
+    org.springframework.web: DEBUG
+
+management:
+  context-path: /admin
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
