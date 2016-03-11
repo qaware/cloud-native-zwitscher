@@ -23,8 +23,8 @@
  */
 package de.qaware.cloud.nativ.zwitscher.service.quote;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.hateoas.Link;
@@ -44,11 +44,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @ExposesResourceFor(RandomQuote.class)
 @RequestMapping("/quote")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RandomQuoteController {
 
-    private final QuotesOnDesignClient quoteClient;
-    private final EntityLinks entityLinks;
+    @Autowired
+    @Qualifier("de.qaware.cloud.nativ.zwitscher.service.quote.QuotesOnDesignClient")
+    private QuotesOnDesignClient quoteClient;
+
+    @Autowired
+    private EntityLinks entityLinks;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<Resource<RandomQuote>> quote() {

@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @FeignClient(name = "quotesOnDesign", url = "http://quotesondesign.com",
         configuration = QuotesOnDesignConfiguration.class,
-        fallback = QuotesOnDesignFallback.class)
+        fallback = RandomQuote.Fallback.class)
 public interface QuotesOnDesignClient {
     /**
      * Obtain a random quote by GET /api/3.0/api-3.0.json
