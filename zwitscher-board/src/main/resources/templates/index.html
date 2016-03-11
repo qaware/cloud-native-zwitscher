@@ -2,12 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 
+    <!--/*@thymesVar id="title" type="java.lang.String"*/-->
     <title th:text="${title}"></title>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 
+<!--/*@thymesVar id="headline" type="java.lang.String"*/-->
 <h1 th:text="${headline}"></h1>
+
+<!--/*@thymesVar id="quote" type="de.qaware.cloud.nativ.zwitscher.board.domain.Quote"*/-->
+<span th:text="${quote.quote}"></span> <span th:text="${quote.author}" style="font-style: italic"></span>
+
+<h1>Zwitscher Messages on Topic</h1>
+
+<form action="/search" method="get">
+    <input type="text" name="q"/>
+    <input type="submit"/>
+</form>
+
+<table>
+    <!--/*@thymesVar id="tweets" type="java.util.Collection<de.qaware.cloud.nativ.zwitscher.board.domain.Zwitscher>"*/-->
+    <tr th:each="tweet : ${tweets}">
+        <td th:text="${tweet.message}"></td>
+    </tr>
+</table>
 
 </body>
 </html>

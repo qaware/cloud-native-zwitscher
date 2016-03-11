@@ -26,6 +26,7 @@ package de.qaware.cloud.nativ.zwitscher.board.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
@@ -40,9 +41,11 @@ public class Quote {
     private String author;
 
     @Component
+    @Slf4j
     static class Fallback implements QuoteRepository {
         @Override
         public Quote getNextQuote() {
+            log.warn("Using fallback quote.");
             return new Quote("Everything fails all the time.", "Unknown");
         }
     }

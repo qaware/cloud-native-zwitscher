@@ -21,23 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.qaware.cloud.nativ.zwitscher.board;
+package de.qaware.cloud.nativ.zwitscher.board.domain;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ZwitscherBoardApplication.class)
-@WebAppConfiguration
-@TestPropertySource("classpath:/application-test.properties")
-public class ZwitscherBoardApplicationTests {
-
-    @Test
-    public void contextLoads() {
-    }
-
+/**
+ * A simple Zwitscher data class. Also defines the fallback implementation.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Zwitscher {
+    private String message;
 }
