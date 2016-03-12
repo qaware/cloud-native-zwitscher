@@ -4,12 +4,26 @@ This showcase demonstrates how to build a cloud native application using
 Spring Boot, Spring Cloud and Netflix OSS components. The individual parts
 will later be deployed and run on Mesos with Kubernetes.
 
-## Usage instructions
+## Build instructions
 
 In order to compile and run the examples you do not need much. A recent JDK8 needs to
 be available in your SEU.
 ```shell
 $ ./gradlew clean build
+```
+
+## Usage instructions
+
+For the showcase to be fully operational you need to configure your own Twitter API key and secret. First, follow
+the instructions on https://spring.io/guides/gs/register-twitter-app/. Once you have a API key and secret, insert
+these into the configuration `zwitscher-config/src/main/resources/config/zwitscher-service.yml`
+
+```yml
+spring:
+  social:
+    twitter:
+      appId: <<Insert Twitter API key here>>
+      appSecret: <<Insert Twitter API key secret here>>
 ```
 
 ## Running the Cloud Native Zwitscher showcase
@@ -39,6 +53,12 @@ $ cd cloud-native-zwitscher
 $ ./gradlew :zwitscher-config:bootRun
 ```
 
+Start the Zwitscher board UI server
+```shell
+$ cd cloud-native-zwitscher
+$ ./gradlew :zwitscher-board:bootRun
+```
+
 Start the Zwitscher edge server
 ```shell
 $ cd cloud-native-zwitscher
@@ -56,6 +76,7 @@ If everything has started OK, you can access the the services under the followin
 * **Eureka server**: http://localhost:8761
 * **Config server**: http://localhost:8888
 * **Service server**: http://localhost:8080
+* **Board server**: http://localhost:8081
 * **Edge server**: http://localhost:8765
 * **Monitoring server**: http://localhost:8989
 
