@@ -22,3 +22,9 @@ eureka:
     leaseRenewalIntervalInSeconds: 10
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
+
+spring:
+  social:
+    twitter:
+      appId: <<Insert Consumer Key here>>
+      appSecret: <<Insert Consumer Secret here>>
