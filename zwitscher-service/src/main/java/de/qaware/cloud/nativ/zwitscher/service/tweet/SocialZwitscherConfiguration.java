@@ -23,18 +23,20 @@
  */
 package de.qaware.cloud.nativ.zwitscher.service.tweet;
 
-import java.util.Collection;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.social.twitter.api.Twitter;
+import org.springframework.social.twitter.api.impl.TwitterTemplate;
 
 /**
- * The ZwitscherRepository provides methods to work with ZwitscherMessages.
+ * A custom configuration to initialize the Twitter template.
  */
-public interface ZwitscherRepository {
-    /**
-     * Find and return all ZwitscherMessages matching the given query.
-     *
-     * @param q        the query string up to 500 characters
-     * @param pageSize the number of messages to return
-     * @return a collection of ZwitscherMessages
-     */
-    Collection<ZwitscherMessage> search(String q, int pageSize);
+@Configuration
+public class SocialZwitscherConfiguration {
+    @Bean
+    public Twitter twitter(final @Value("${spring.social.twitter.appId}") String appId,
+                           final @Value("${spring.social.twitter.appSecret}") String appSecret) {
+        return new TwitterTemplate(appId, appSecret);
+    }
 }

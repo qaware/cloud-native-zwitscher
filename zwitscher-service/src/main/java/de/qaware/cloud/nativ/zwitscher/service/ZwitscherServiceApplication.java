@@ -24,7 +24,9 @@
 package de.qaware.cloud.nativ.zwitscher.service;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.social.TwitterAutoConfiguration;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
@@ -38,6 +40,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 @EnableHystrix
 @EnableCircuitBreaker
 @EnableFeignClients
+@EnableAutoConfiguration(exclude = {TwitterAutoConfiguration.class})
 public class ZwitscherServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZwitscherServiceApplication.class, args);

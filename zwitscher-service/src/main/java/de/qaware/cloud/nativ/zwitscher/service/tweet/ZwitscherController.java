@@ -46,9 +46,18 @@ public class ZwitscherController {
 
     private final ZwitscherRepository repository;
 
+    /**
+     * Return ZwitscherMessages matching the given query.
+     *
+     * @param q        the query string
+     * @param pageSize the number of messages to be returned
+     * @return list of found Zwitscher messages
+     */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public HttpEntity<Collection<ZwitscherMessage>> tweets(@RequestParam("q") String q) {
-        Collection<ZwitscherMessage> zwitscherMessages = repository.search(q);
+    public HttpEntity<Collection<ZwitscherMessage>> tweets(@RequestParam("q") String q,
+                                                           @RequestParam(value = "pageSize", required = false, defaultValue = "50")
+                                                           int pageSize) {
+        Collection<ZwitscherMessage> zwitscherMessages = repository.search(q, pageSize);
         return new ResponseEntity<>(zwitscherMessages, HttpStatus.OK);
     }
 }

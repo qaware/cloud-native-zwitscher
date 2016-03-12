@@ -24,12 +24,17 @@
 package de.qaware.cloud.nativ.zwitscher.service.tweet;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.twitter.api.SearchResults;
+import org.springframework.social.twitter.api.Twitter;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * This implementation uses Spring Social Twitter API to access tweets
@@ -37,14 +42,21 @@ import java.util.Collections;
  */
 @Repository
 @Slf4j
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SocialZwitscherRepository implements ZwitscherRepository {
+
+    private final Twitter twitter;
+
     @Override
     @HystrixCommand(fallbackMethod = "noResults")
-    public Collection<ZwitscherMessage> search(String q) {
-        return Arrays.asList(new ZwitscherMessage("Test Tweet"));
+    public Collection<ZwitscherMessage> search(String q, int pageSize) {
+        SearchResults results = twitter.searchOperations().search(q, pageSize);
+        return results.getTweets().stream()
+                .map(t -> new ZwitscherMessage(t.getUnmodifiedText()))
+                .collect(toList());
     }
 
-    protected Collection<ZwitscherMessage> noResults(String q) {
+    protected Collection<ZwitscherMessage> noResults(String q, int pageSize) {
         log.warn("Using fallback ZwitscherMessage results.");
         return Collections.emptyList();
     }
