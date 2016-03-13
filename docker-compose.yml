@@ -29,7 +29,6 @@ zwitscherservice:
   environment:
      EUREKA_HOST: zwitschereureka
      EUREKA_PORT: 8761
-     SPRING_PROFILES_ACTIVE: docker
   ports:
     - "8080:8080"
 
@@ -44,7 +43,6 @@ zwitscherboard:
   environment:
      EUREKA_HOST: zwitschereureka
      EUREKA_PORT: 8761
-     SPRING_PROFILES_ACTIVE: docker
   ports:
     - "8081:8081"
 
@@ -60,7 +58,6 @@ zwitscheredge:
   environment:
      EUREKA_HOST: zwitschereureka
      EUREKA_PORT: 8761
-     SPRING_PROFILES_ACTIVE: docker
   ports:
     - "8765:8765"
 
@@ -77,6 +74,5 @@ zwitschermonitor:
   environment:
      EUREKA_HOST: zwitschereureka
      EUREKA_PORT: 8761
-     SPRING_PROFILES_ACTIVE: docker
   ports:
     - "8989:8989"
