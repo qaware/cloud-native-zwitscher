@@ -27,6 +27,8 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.social.twitter.api.SearchResults;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.stereotype.Repository;
@@ -43,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 @Repository
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class SocialZwitscherRepository implements ZwitscherRepository {
+public class SocialZwitscherRepository implements ZwitscherRepository, HealthIndicator {
 
     private final Twitter twitter;
 
@@ -59,5 +61,11 @@ public class SocialZwitscherRepository implements ZwitscherRepository {
     protected Collection<ZwitscherMessage> noResults(String q, int pageSize) {
         log.warn("Using fallback ZwitscherMessage results.");
         return Collections.emptyList();
+    }
+
+    @Override
+    public Health health() {
+        // maybe check the connection status here
+        return Health.up().build();
     }
 }
