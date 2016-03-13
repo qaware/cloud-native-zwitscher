@@ -2,10 +2,14 @@ FROM java:8
 MAINTAINER QAware GmbH <qaware-oss@qaware.de>
 
 RUN mkdir -p /opt/zwitscher-monitor
-COPY build/libs/zwitscher-monitor-1.0.0.jar /opt/zwitscher-monitor/zwitscher-monitor.jar
-RUN chmod 755 /opt/zwitscher-monitor/zwitscher-monitor.jar
 
-ENV JAVA_OPTS -Xmx128m -Djava.security.egd=file:/dev/./urandom
+COPY build/libs/zwitscher-monitor-1.0.0.jar /opt/zwitscher-monitor/zwitscher-monitor.jar
+
+COPY src/main/docker/zwitscher-monitor.conf /opt/zwitscher-monitor/
+COPY src/main/docker/zwitscher-monitor.sh /opt/zwitscher-monitor/
+
+RUN chmod 755 /opt/zwitscher-monitor/zwitscher-monitor.jar
+RUN chmod 755 /opt/zwitscher-monitor/zwitscher-monitor.sh
 
 EXPOSE 8761
-ENTRYPOINT exec java $JAVA_OPTS -jar /opt/zwitscher-monitor/zwitscher-monitor.jar
+ENTRYPOINT exec /opt/zwitscher-monitor/zwitscher-monitor.sh

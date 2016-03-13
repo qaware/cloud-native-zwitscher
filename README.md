@@ -102,7 +102,8 @@ Once this is done, open a Docker terminal and issue the following command in the
 
 ```shell
 $ cd cloud-native-zwitscher
-$ docker-compose up
+$ docker-compose up -d
+$ docker-compose logs
 ```
 
 This will start all the Docker images in the correct order. The instances can then be accessed via their known ports
@@ -112,7 +113,6 @@ To shutdown and remove everything again, kill and remove the Docker containers f
 Docker images again if you wish.
 
 ```shell
-$ Press CTRL+C
 $ docker-compose kill
 $ docker-compose rm
 $ ./gradlew removeDockerImage

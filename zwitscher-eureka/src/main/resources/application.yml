@@ -4,6 +4,18 @@ info:
 server:
   port: 8761
 
+management:
+  context-path: /admin
+
+endpoints:
+  info:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    enabled: true
+    sensitive: false
+
 eureka:
   client:
     registerWithEureka: false

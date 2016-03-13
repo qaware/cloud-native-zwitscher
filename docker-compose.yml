@@ -2,8 +2,6 @@ zwitschereureka:
   image: "zwitscher-eureka:1.0.0"
   mem_limit: 128M
   hostname: zwitschereureka
-  environment:
-    JAVA_OPTS: "-Xmx128m -Djava.security.egd=file:/dev/./urandom"
   ports:
     - "8761:8761"
 
