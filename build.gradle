@@ -60,9 +60,9 @@ subprojects {
         compile 'org.springframework.boot:spring-boot-starter-actuator'
         compile 'org.springframework.boot:spring-boot-starter-hateoas'
 
-        compile('org.projectlombok:lombok:1.16.6')
+        compile 'org.projectlombok:lombok:1.16.6'
 
-        testCompile('org.springframework.boot:spring-boot-starter-test')
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
         testCompile 'junit:junit:4.12'
         testCompile 'org.hamcrest:hamcrest-library:1.3'
     }
