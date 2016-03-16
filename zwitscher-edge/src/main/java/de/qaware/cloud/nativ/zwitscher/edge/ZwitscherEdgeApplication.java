@@ -35,7 +35,6 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableZuulProxy
-@EnableHystrix
 public class ZwitscherEdgeApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZwitscherEdgeApplication.class, args);
