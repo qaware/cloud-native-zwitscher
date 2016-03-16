@@ -4,6 +4,10 @@ spring:
   cloud:
     config:
       enabled: true
+      failFast: true
+      retry:
+        initialInterval: 1500
+        maxAttempts: 5
       discovery:
         enabled: true
         serviceId: ZWITSCHER-CONFIG
@@ -12,5 +16,7 @@ eureka:
   instance:
     nonSecurePort: ${server.port:8081}
   client:
+    healthcheck:
+      enabled: true
     serviceUrl:
       defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
