@@ -1,4 +1,5 @@
 zuul:
+  ignoredPatterns: /**/admin/**
   routes:
     api:
       path: /api/**
