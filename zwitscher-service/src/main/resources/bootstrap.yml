@@ -4,7 +4,7 @@ spring:
   cloud:
     config:
       enabled: true
-      failFast: true
+      failFast: false
       retry:
         initialInterval: 1500
         maxAttempts: 5
@@ -17,6 +17,6 @@ eureka:
     nonSecurePort: ${server.port:8080}
   client:
     healthcheck:
-        enabled: true
+      enabled: true
     serviceUrl:
       defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
