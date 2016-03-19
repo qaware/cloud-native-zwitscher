@@ -4,6 +4,8 @@ This showcase demonstrates how to build a cloud native application using
 Spring Boot, Spring Cloud and Netflix OSS components. The individual parts
 will later be deployed and run on Mesos with Kubernetes.
 
+![Zwitscher Showcase Overview](https://github.com/qaware/cloud-native-zwitscher/blob/master/zwitscher.png)
+
 ## Build instructions
 
 In order to compile and run the examples you do not need much. A recent JDK8 needs to
