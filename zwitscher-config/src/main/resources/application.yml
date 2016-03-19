@@ -18,7 +18,6 @@ management:
 
 logging:
   level:
-    ROOT: INFO
     com.netflix.discovery: INFO
     org.springframework.cloud: INFO
 
@@ -30,8 +29,19 @@ eureka:
 
 ---
 spring:
+  profiles: native
   cloud:
     config:
       server:
         native:
           searchLocations: classpath:/config
+
+---
+spring:
+  profiles: docker
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/qaware/cloud-native-zwitscher/tree/master/zwitscher-config/src/main/resources/config
+          cloneOnStart: true
