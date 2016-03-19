@@ -3,10 +3,3 @@ info:
 
 server:
   port: 8989
-
-turbine:
-  appConfig: zwitscher-service,zwitscher-board,zwitscher-edge
-  instanceUrlSuffix: /admin/hystrix.stream
-  instanceInsertPort: true
-  aggregator:
-    clusterConfig: ZWITSCHER
