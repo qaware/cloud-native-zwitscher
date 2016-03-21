@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * will locate the endpoint via Eureka using the serviceId and use Ribbon to balance
  * between the registered instances.
  */
-@FeignClient(value = "zwitscher-service", fallback = Quote.Fallback.class)
+@FeignClient(name = "zwitscher-service", fallback = Quote.Fallback.class)
 public interface QuoteRepository {
     /**
      * Get the next quote from the the /quote service.
