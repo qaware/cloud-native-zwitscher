@@ -42,7 +42,6 @@ import org.springframework.web.client.RestTemplate;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableHystrix
 @EnableCircuitBreaker
 @EnableFeignClients
 @RibbonClient(name = "zwitscher-service")
