@@ -1,6 +1,31 @@
 turbine:
-  appConfig: zwitscher-service,zwitscher-board,zwitscher-edge
+  appConfig: zwitscher-service,zwitscher-board
   instanceUrlSuffix: /admin/hystrix.stream
-  instanceInsertPort: true
+  clusterNameExpression: appGroupName
   aggregator:
     clusterConfig: ZWITSCHER
+
+endpoints:
+  info:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    enabled: true
+    sensitive: false
+
+logging:
+  level:
+    com.netflix.discovery: INFO
+    com.netflix.turbine: INFO
+    org.springframework.cloud: INFO
+    org.springframework.web: INFO
+
+management:
+  context-path: /admin
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health

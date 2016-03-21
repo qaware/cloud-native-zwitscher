@@ -15,6 +15,7 @@ spring:
 eureka:
   instance:
     nonSecurePort: ${server.port:8081}
+    appGroupName: ZWITSCHER
   client:
     healthcheck:
       enabled: true
