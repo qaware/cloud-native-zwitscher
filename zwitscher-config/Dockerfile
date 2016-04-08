@@ -1,4 +1,4 @@
-FROM java:8
+FROM java:8-jdk-alpine
 MAINTAINER QAware GmbH <qaware-oss@qaware.de>
 
 RUN mkdir -p /opt/zwitscher-config
