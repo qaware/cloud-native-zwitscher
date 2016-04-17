@@ -1,17 +1,16 @@
 zwitschereureka:
   image: "zwitscher-eureka:1.0.0"
-  mem_limit: 128M
   hostname: zwitschereureka
   ports:
     - "8761:8761"
 
 zwitscherconfig:
   image: "zwitscher-config:1.0.0"
-  mem_limit: 128M
   hostname: zwitscherconfig
   links:
     - zwitschereureka
   environment:
+    DOCKER_COMPOSE: true
     EUREKA_HOST: zwitschereureka
     EUREKA_PORT: 8761
   ports:
@@ -19,34 +18,33 @@ zwitscherconfig:
 
 zwitscherservice:
   image: zwitscher-service:1.0.0
-  mem_limit: 256M
   hostname: zwitscherservice
   links:
     - zwitschereureka
     - zwitscherconfig
   environment:
-     EUREKA_HOST: zwitschereureka
-     EUREKA_PORT: 8761
+    DOCKER_COMPOSE: true
+    EUREKA_HOST: zwitschereureka
+    EUREKA_PORT: 8761
   ports:
     - "8080:8080"
 
 zwitscherboard:
   image: zwitscher-board:1.0.0
-  mem_limit: 256M
   hostname: zwitscherboard
   links:
     - zwitschereureka
     - zwitscherconfig
     - zwitscherservice
   environment:
-     EUREKA_HOST: zwitschereureka
-     EUREKA_PORT: 8761
+    DOCKER_COMPOSE: true
+    EUREKA_HOST: zwitschereureka
+    EUREKA_PORT: 8761
   ports:
     - "8081:8081"
 
 zwitscheredge:
   image: zwitscher-edge:1.0.0
-  mem_limit: 128M
   hostname: zwitscheredge
   links:
     - zwitschereureka
@@ -54,14 +52,14 @@ zwitscheredge:
     - zwitscherservice
     - zwitscherboard
   environment:
-     EUREKA_HOST: zwitschereureka
-     EUREKA_PORT: 8761
+    DOCKER_COMPOSE: true
+    EUREKA_HOST: zwitschereureka
+    EUREKA_PORT: 8761
   ports:
     - "8765:8765"
 
 zwitschermonitor:
   image: zwitscher-monitor:1.0.0
-  mem_limit: 128M
   hostname: zwitschermonitor
   links:
     - zwitschereureka
@@ -70,7 +68,8 @@ zwitschermonitor:
     - zwitscherboard
     - zwitscheredge
   environment:
-     EUREKA_HOST: zwitschereureka
-     EUREKA_PORT: 8761
+    DOCKER_COMPOSE: true
+    EUREKA_HOST: zwitschereureka
+    EUREKA_PORT: 8761
   ports:
     - "8989:8989"
