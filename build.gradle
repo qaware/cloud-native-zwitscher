@@ -20,6 +20,13 @@ allprojects {
     docker {
         url = System.env.DOCKER_HOST ?: 'https://192.168.99.100:2376'
         certPath = file("${System.getProperty('user.home')}/.docker/machine/machines/default")
+
+        registryCredentials {
+            url = 'qaware-oss-docker-registry.bintray.io'
+            username = project.hasProperty('bintrayUsername') ? project.bintrayUsername : 'qaware-oss'
+            password = project.hasProperty('bintrayApiKey') ? project.bintrayApiKey : ''
+            email = 'qaware-oss@qaware.de'
+        }
     }
 
     repositories {
@@ -91,6 +98,3 @@ import com.bmuschko.gradle.docker.tasks.DockerVersion
 task dockerInfo(type: DockerInfo) {}
 task dockerVersion(type: DockerVersion) {}
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.11'
-}
