@@ -1,4 +1,7 @@
 [![Stories in Ready](https://badge.waffle.io/qaware/cloud-native-zwitscher.png?label=ready&title=Ready)](https://waffle.io/qaware/cloud-native-zwitscher)
+[![Stories in Progress](https://badge.waffle.io/qaware/cloud-native-zwitscher.png?label=in%20progress&title=In%20Progress)](https://waffle.io/qaware/cloud-native-zwitscher)
+[![MIT License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/qaware/cloud-native-zwitscher/blob/master/LICENSE)
+
 # Cloud Native Zwitscher Showcase
 
 This showcase demonstrates how to build a cloud native application using
