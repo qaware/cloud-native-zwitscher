@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/qaware/cloud-native-zwitscher.png?label=ready&title=Ready)](https://waffle.io/qaware/cloud-native-zwitscher)
 # Cloud Native Zwitscher Showcase
 
 This showcase demonstrates how to build a cloud native application using
