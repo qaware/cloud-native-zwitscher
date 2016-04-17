@@ -7,22 +7,3 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-config-server'
     compile 'org.springframework.cloud:spring-cloud-starter-eureka'
 }
-
-import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
-import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
-import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
-
-task buildDockerImage(type: DockerBuildImage) {
-    inputDir = projectDir
-    noCache = false
-    remove = true
-    tag = "zwitscher-config:$version"
-}
-
-task removeDockerImage(type: DockerRemoveImage) {
-    imageId = "zwitscher-config:$version"
-}
-
-task pushDockerImage(type: DockerPushImage) {
-    imageName = "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-config:$version"
-}

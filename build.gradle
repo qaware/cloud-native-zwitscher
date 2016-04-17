@@ -90,10 +90,28 @@ subprojects {
             html.enabled = true
         }
     }
+
+    task buildDockerImage(type: DockerBuildImage) {
+        inputDir = projectDir
+        noCache = false
+        remove = true
+        tag = "$project.name:$version"
+    }
+
+    task removeDockerImage(type: DockerRemoveImage) {
+        imageId = "$project.name:$version"
+    }
+
+    task pushDockerImage(type: DockerPushImage) {
+        imageName = "qaware-oss-docker-registry.bintray.io/zwitscher/$project.name:$version"
+    }
 }
 
 import com.bmuschko.gradle.docker.tasks.DockerInfo
 import com.bmuschko.gradle.docker.tasks.DockerVersion
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
+import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
 
 task dockerInfo(type: DockerInfo) {}
 task dockerVersion(type: DockerVersion) {}

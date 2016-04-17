@@ -10,22 +10,3 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-hystrix-dashboard'
     compile 'org.springframework.cloud:spring-cloud-starter-turbine'
 }
-
-import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
-import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
-import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
-
-task buildDockerImage(type: DockerBuildImage) {
-    inputDir = projectDir
-    noCache = false
-    remove = true
-    tag = "zwitscher-monitor:$version"
-}
-
-task removeDockerImage(type: DockerRemoveImage) {
-    imageId = "zwitscher-monitor:$version"
-}
-
-task pushDockerImage(type: DockerPushImage) {
-    imageName = "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-monitor:$version"
-}
