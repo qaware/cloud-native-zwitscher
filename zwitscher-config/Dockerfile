@@ -1,4 +1,4 @@
-FROM java:8-jdk-alpine
+FROM qaware-oss-docker-registry.bintray.io/base/debian8-jre8
 MAINTAINER QAware GmbH <qaware-oss@qaware.de>
 
 RUN mkdir -p /opt/zwitscher-config

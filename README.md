@@ -87,7 +87,7 @@ If everything has started OK, you can access the the services under the followin
 * **Monitoring server**: http://localhost:8989
 
 
-### Docker
+### Docker Compose
 
 To run the complete showcase using docker locally, please ensure that Docker is running and can be accessed
 by Gradle correctly:
@@ -124,8 +124,43 @@ $ docker-compose rm
 $ ./gradlew removeDockerImage
 ```
 
+### Kubernetes
 
-### Mesos with Kubernetes
+In order to run the showcase using Kubernetes on either AWS or GCE we first need to upload the Docker images for the
+showcase to the Bintray registry so that the images can be downloaded by Kubernetes later on.
+
+Tag the latest image according to the following convention by running the following command:
+```shell
+docker tag <IMAGE_ID> qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-eureka:<VERSION>
+docker tag <IMAGE_ID> qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-config:<VERSION>
+docker tag <IMAGE_ID> qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-service:<VERSION>
+docker tag <IMAGE_ID> qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-board:<VERSION>
+docker tag <IMAGE_ID> qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge:<VERSION>
+docker tag <IMAGE_ID> qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-monitor:<VERSION>
+```
+`<IMAGE_ID>` - The image ID from the latest versioned image previously created.
+`<VERSION>` - Should be the actual Zwitscher showcase version, like 1.0.0. When not specified
+"latest" will be used as the Bintray version name.
+
+Use the Docker client push command to upload and publish your images (please use
+Docker v1.6 and above):
+```shell
+docker push qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-eureka
+docker push qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-config
+docker push qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-service
+docker push qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-board
+docker push qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge
+docker push qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-monitor
+```
+
+Alternatively you can also use Gradle to upload the Docker images to Bintray.
+```shell
+$ ./gradlew pushDockerImage -PbintrayUsername=<<INSERT USERNAME>> -PbintrayApiKey=<<INSERT API KEY>>
+```
+
+_To be continued..._
+
+### DCOS/Mesos
 
 _To be continued..._
 
