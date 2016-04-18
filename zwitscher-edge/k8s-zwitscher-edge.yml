@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zwitscher-edge
+  labels:
+    zwitscher: edge
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service. Do not use locally.
+  # type: LoadBalancer
+  ports:
+  - port: 8765
+  selector:
+    zwitscher: edge
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zwitscher-edge
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        zwitscher: edge
+    spec:
+      containers:
+      - name: zwitscher-edge
+        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8765
+        livenessProbe:
+          httpGet:
+            path: /admin/health
+            port: 8765
+          initialDelaySeconds: 90
+          timeoutSeconds: 5
+        env:
+        - name: EUREKA_HOST
+          value: zwitscher-eureka
