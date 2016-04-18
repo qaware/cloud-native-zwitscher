@@ -19,6 +19,8 @@ management:
 
 eureka:
   instance:
+    # register with IP addresses (required for deployment in Kubernetes?)
+    preferIpAddress: false
     leaseRenewalIntervalInSeconds: 10
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
@@ -26,5 +28,5 @@ eureka:
 spring:
   social:
     twitter:
-      appId: <<Insert Consumer Key here>>
-      appSecret: <<Insert Consumer Secret here>>
+      appId: '{cipher}AQBSfX5qoZ9g1Qo0cCtj1WWSJBJyjz72ojQTCsMF8e30AwKCdb5qx2K33gWAWgCCMIwGXcWwA68EzI4zgLeZoAV3HirorC4fNqjU4M1MaXmuHSO7DGgheDBU+n1NzgWrmOVFxFdZjtdGFuARANxjQ53+al/ZhD9/+HPqMewH+lemOpEBlPpp0IAVBfactDRlCxwfFIn6qjON176nB6tz9BKLCAWFIR6OtBtP/oFZ6iao9SQCGWujNAkg3ALZpWf6TqwFUSdPfDhAwUaUAL2+XA3fGDy8xTljW+eEe+MHJzGc5mD+HqYBqiBnjFd+yiplKYY35OjyUEppKGvoZbKNwUpGFHx40MKQLCPLW9cT2ZEFUvZkF6d+5yobrkBcO2Pp9eWY1pst5CQj8qBs8jURo172'
+      appSecret: '{cipher}AQBWP86hCkery1FxrhY4cBtzFmKHJqXQlc7/pXDnocDQ5otfi0eKai2CFk/OFRDoDW6C+5wZyVbY0K6YcZCU92vDxCf9qGKj9lTvnPS43bcmAbY7Jp/UlIh5LGq2EZBjtGlxpqthSUJ07p9qBumsneRh6xwOIA6oDYUQibyUwaA9t3jvK/r4nf66hYKvzBzWijMGo3eSKMDjq1SNnRUDA06xhYZ8lNvwkqIRRbA8TdOhSeBKRNacxUfetskp21M4D92Btq+KLp2x/6+WzI9uOVTxsh6RMRpFaK33w9WzZlfNvGqlRsj4F9c3JyJBPv1/cEgAAvcPp8dr/a7ooUdNl1s998aLRW+ijw4maR0KNmrGSjkefSe7uP+sXGm/kQ6BSyBr/qL/vAA87c7KqSW/EGpKYxQMTA6IhriS/jIaJRJs0fXtrbdNIEzpM4/xC0dxe58='

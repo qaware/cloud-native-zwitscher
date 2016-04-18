@@ -26,6 +26,8 @@ management:
 
 eureka:
   instance:
+    # register with IP addresses (required for deployment in Kubernetes?)
+    preferIpAddress: false
     leaseRenewalIntervalInSeconds: 10
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
