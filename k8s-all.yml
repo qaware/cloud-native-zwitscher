@@ -1,0 +1,251 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zwitscher-eureka
+  labels:
+    zwitscher: eureka
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service. So not use locally.
+  # type: LoadBalancer
+  ports:
+  - port: 8761
+  selector:
+    zwitscher: eureka
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zwitscher-eureka
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        zwitscher: eureka
+    spec:
+      containers:
+      - name: zwitscher-eureka
+        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-eureka"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8761
+        livenessProbe:
+          httpGet:
+            path: /admin/health
+            port: 8761
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+        env:
+        - name: JAVA_OPTS
+          value: -Xmx128m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zwitscher-config
+  labels:
+    zwitscher: config
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service. Do not use locally.
+  # type: LoadBalancer
+  ports:
+  - port: 8888
+  selector:
+    zwitscher: config
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zwitscher-config
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        zwitscher: config
+    spec:
+      containers:
+      - name: zwitscher-config
+        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-config"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8888
+        livenessProbe:
+          httpGet:
+            path: /admin/health
+            port: 8888
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+        env:
+        - name: EUREKA_HOST
+          value: zwitscher-eureka
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zwitscher-service
+  labels:
+    zwitscher: service
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service. Do not use locally.
+  # type: LoadBalancer
+  ports:
+  - port: 8080
+  selector:
+    zwitscher: service
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zwitscher-service
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        zwitscher: service
+    spec:
+      containers:
+      - name: zwitscher-service
+        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-service"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /admin/health
+            port: 8080
+          initialDelaySeconds: 90
+          timeoutSeconds: 5
+        env:
+        - name: EUREKA_HOST
+          value: zwitscher-eureka
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zwitscher-board
+  labels:
+    zwitscher: board
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service. Do not use locally.
+  # type: LoadBalancer
+  ports:
+  - port: 8081
+  selector:
+    zwitscher: board
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zwitscher-board
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        zwitscher: board
+    spec:
+      containers:
+      - name: zwitscher-board
+        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-board"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8081
+        livenessProbe:
+          httpGet:
+            path: /admin/health
+            port: 8081
+          initialDelaySeconds: 90
+          timeoutSeconds: 5
+        env:
+        - name: EUREKA_HOST
+          value: zwitscher-eureka
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zwitscher-edge
+  labels:
+    zwitscher: edge
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service. Do not use locally.
+  # type: LoadBalancer
+  ports:
+  - port: 8765
+  selector:
+    zwitscher: edge
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zwitscher-edge
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        zwitscher: edge
+    spec:
+      containers:
+      - name: zwitscher-edge
+        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8765
+        livenessProbe:
+          httpGet:
+            path: /admin/health
+            port: 8765
+          initialDelaySeconds: 90
+          timeoutSeconds: 5
+        env:
+        - name: EUREKA_HOST
+          value: zwitscher-eureka
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zwitscher-monitor
+  labels:
+    zwitscher: monitor
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service. Do not use locally.
+  # type: LoadBalancer
+  ports:
+  - port: 8989
+  selector:
+    zwitscher: monitor
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zwitscher-monitor
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        zwitscher: monitor
+    spec:
+      containers:
+      - name: zwitscher-monitor
+        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-monitor"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8989
+        livenessProbe:
+          httpGet:
+            path: /admin/health
+            port: 8989
+          initialDelaySeconds: 120
+          timeoutSeconds: 5
+        env:
+        - name: EUREKA_HOST
+          value: zwitscher-eureka
