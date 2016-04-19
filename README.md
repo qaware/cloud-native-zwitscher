@@ -127,8 +127,9 @@ $ ./gradlew removeDockerImage
 
 ### Kubernetes
 
-In order to run the showcase using Kubernetes on either AWS or GCE we first need to upload the Docker images for the
-showcase to the Bintray registry so that the images can be downloaded by Kubernetes later on.
+In order to run the showcase using Kubernetes on either AWS, GCE or Vagrantwe first
+need to upload the Docker images for the showcase to the Bintray registry so that
+the images can be downloaded by Kubernetes later on.
 
 Tag the latest image according to the following convention by running the following command:
 ```shell
@@ -159,7 +160,37 @@ Alternatively you can also use Gradle to upload the Docker images to Bintray.
 $ ./gradlew pushDockerImage -PbintrayUsername=<<INSERT USERNAME>> -PbintrayApiKey=<<INSERT API KEY>>
 ```
 
-_To be continued..._
+Next you need to setup the actual Kubernetes nodes you want to deploy the showcase to.
+For local development use Vagrant, otherwise choose a cloud provider such as AWS or GCE.
+There are 3 shell scripts provided (`k8s-setup-vagrant.sh`, `k8s-setup-aws.sh`, `k8s-setup-gce.sh`). For AWS and GCE you need to configure your environment
+properly and you need to have a paid account.
+
+To verify that your Kubernetes cluster is alive and healthy, issue the following command:
+```shell
+kubectl.sh cluster-info
+```
+
+Now you can create the Kubernetes deployments one by one and see how the Zwitscher
+showcase becomes alive. In the project root directory issue the following commands:
+```shell
+kubectl.sh create -f zwitscher-eureka/zwitscher-eureka.yml
+kubectl.sh create -f zwitscher-config/zwitscher-config.yml
+kubectl.sh create -f zwitscher-service/zwitscher-service.yml
+kubectl.sh create -f zwitscher-board/zwitscher-board.yml
+kubectl.sh create -f zwitscher-edge/zwitscher-edge.yml
+kubectl.sh create -f zwitscher-monitor/zwitscher-monitor.yml
+kubectl.sh get pods,deployments,services
+kubectl.sh scale deployment zwitscher-service --replicas=2
+kubectl.sh get pods,deployments
+```
+
+To setup or tear down the whole Zwitscher Showcase at once you can also use the provided
+full Kubernetes deployment descriptor:
+```shell
+kubectl.sh create -f k8s-zwitscher.yml
+kubectl.sh get pods,deployments,services
+kubectl.sh delete -f k8s-zwitscher.yml
+```
 
 ### DCOS/Mesos
 
