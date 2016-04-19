@@ -39,3 +39,5 @@ spec:
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka
+        - name: JAVA_OPTS
+          value: -Xmx128m

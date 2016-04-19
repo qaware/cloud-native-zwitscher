@@ -81,6 +81,8 @@ spec:
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka
+        - name: JAVA_OPTS
+          value: -Xmx128m
 ---
 apiVersion: v1
 kind: Service
@@ -123,6 +125,8 @@ spec:
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka
+        - name: JAVA_OPTS
+          value: -Xmx196m
 ---
 apiVersion: v1
 kind: Service
@@ -165,6 +169,8 @@ spec:
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka
+        - name: JAVA_OPTS
+          value: -Xmx196m
 ---
 apiVersion: v1
 kind: Service
@@ -207,6 +213,8 @@ spec:
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka
+        - name: JAVA_OPTS
+          value: -Xmx128m
 ---
 apiVersion: v1
 kind: Service
@@ -249,3 +257,5 @@ spec:
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka
+        - name: JAVA_OPTS
+          value: -Xmx128m

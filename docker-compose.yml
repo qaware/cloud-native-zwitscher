@@ -3,6 +3,8 @@ zwitschereureka:
   hostname: zwitschereureka
   ports:
     - "8761:8761"
+  environment:
+    JAVA_OPTS: -Xmx128m
 
 zwitscherconfig:
   image: "zwitscher-config:1.0.0"
@@ -13,6 +15,7 @@ zwitscherconfig:
     DOCKER_COMPOSE: true
     EUREKA_HOST: zwitschereureka
     EUREKA_PORT: 8761
+    JAVA_OPTS: -Xmx128m
   ports:
     - "8888:8888"
 
@@ -26,6 +29,7 @@ zwitscherservice:
     DOCKER_COMPOSE: true
     EUREKA_HOST: zwitschereureka
     EUREKA_PORT: 8761
+    JAVA_OPTS: -Xmx196m
   ports:
     - "8080:8080"
 
@@ -40,6 +44,7 @@ zwitscherboard:
     DOCKER_COMPOSE: true
     EUREKA_HOST: zwitschereureka
     EUREKA_PORT: 8761
+    JAVA_OPTS: -Xmx196m
   ports:
     - "8081:8081"
 
@@ -55,6 +60,7 @@ zwitscheredge:
     DOCKER_COMPOSE: true
     EUREKA_HOST: zwitschereureka
     EUREKA_PORT: 8761
+    JAVA_OPTS: -Xmx128m
   ports:
     - "8765:8765"
 
@@ -71,5 +77,6 @@ zwitschermonitor:
     DOCKER_COMPOSE: true
     EUREKA_HOST: zwitschereureka
     EUREKA_PORT: 8761
+    JAVA_OPTS: -Xmx128m
   ports:
     - "8989:8989"
