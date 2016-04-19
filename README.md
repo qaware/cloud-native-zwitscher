@@ -173,12 +173,12 @@ kubectl.sh cluster-info
 Now you can create the Kubernetes deployments one by one and see how the Zwitscher
 showcase becomes alive. In the project root directory issue the following commands:
 ```shell
-kubectl.sh create -f zwitscher-eureka/zwitscher-eureka.yml
-kubectl.sh create -f zwitscher-config/zwitscher-config.yml
-kubectl.sh create -f zwitscher-service/zwitscher-service.yml
-kubectl.sh create -f zwitscher-board/zwitscher-board.yml
-kubectl.sh create -f zwitscher-edge/zwitscher-edge.yml
-kubectl.sh create -f zwitscher-monitor/zwitscher-monitor.yml
+kubectl.sh create -f zwitscher-eureka/k8s-zwitscher-eureka.yml
+kubectl.sh create -f zwitscher-config/k8s-zwitscher-config.yml
+kubectl.sh create -f zwitscher-service/k8s-zwitscher-service.yml
+kubectl.sh create -f zwitscher-board/k8s-zwitscher-board.yml
+kubectl.sh create -f zwitscher-edge/k8s-zwitscher-edge.yml
+kubectl.sh create -f zwitscher-monitor/k8s-zwitscher-monitor.yml
 kubectl.sh get pods,deployments,services
 kubectl.sh scale deployment zwitscher-service --replicas=2
 kubectl.sh get pods,deployments
