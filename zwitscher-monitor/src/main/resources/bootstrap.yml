@@ -4,6 +4,12 @@ spring:
   cloud:
     config:
       enabled: true
+      failFast: true
+      retry:
+        initialInterval: 1500
+        maxInterval: 5000
+        maxAttempts: 5
+        multiplier: 1.5
       discovery:
         enabled: true
         serviceId: ZWITSCHER-CONFIG
