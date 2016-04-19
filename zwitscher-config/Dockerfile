@@ -8,7 +8,8 @@ COPY src/main/docker/zwitscher-config.* /opt/zwitscher-config/
 
 RUN chmod 755 /opt/zwitscher-config/zwitscher-config.jar; chmod 755 /opt/zwitscher-config/zwitscher-config.sh
 
-ADD src/main/docker/jce_policy-8.tar.gz $JAVA_HOME/jre/lib/security
+RUN rm -f /opt/java/latest/jre/lib/security/local_policy.jar /opt/java/latest/jre/lib/security/US_export_policy.jar
+ADD src/main/docker/jce_policy-8.tar.gz /opt/java/latest/jre/lib/security
 
 EXPOSE 8888
 ENTRYPOINT exec /opt/zwitscher-config/zwitscher-config.sh
