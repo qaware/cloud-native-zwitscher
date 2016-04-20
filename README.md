@@ -57,7 +57,7 @@ $ ./gradlew :zwitscher-config:bootRun
 Start the Zwitscher service server
 ```shell
 $ cd cloud-native-zwitscher
-$ ./gradlew :zwitscher-config:bootRun
+$ ./gradlew :zwitscher-service:bootRun
 ```
 
 Start the Zwitscher board UI server
@@ -69,7 +69,7 @@ $ ./gradlew :zwitscher-board:bootRun
 Start the Zwitscher edge server
 ```shell
 $ cd cloud-native-zwitscher
-$ ./gradlew :zwitscher-service:bootRun
+$ ./gradlew :zwitscher-edge:bootRun
 ```
 
 Start the Zwitscher monitoring server
