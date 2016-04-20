@@ -28,6 +28,13 @@ spec:
       - name: zwitscher-eureka
         image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-eureka"
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "196Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8761
         livenessProbe:
@@ -70,6 +77,13 @@ spec:
       - name: zwitscher-config
         image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-config"
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "196Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8888
         livenessProbe:
@@ -114,6 +128,13 @@ spec:
       - name: zwitscher-service
         image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-service"
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "196Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "750m"
         ports:
         - containerPort: 8080
         livenessProbe:
@@ -158,6 +179,13 @@ spec:
       - name: zwitscher-board
         image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-board"
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "196Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "750m"
         ports:
         - containerPort: 8081
         livenessProbe:
@@ -202,6 +230,13 @@ spec:
       - name: zwitscher-edge
         image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge"
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "196Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8765
         livenessProbe:
@@ -246,6 +281,13 @@ spec:
       - name: zwitscher-monitor
         image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-monitor"
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "196Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8989
         livenessProbe:

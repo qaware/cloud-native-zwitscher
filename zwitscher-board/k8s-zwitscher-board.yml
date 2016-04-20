@@ -28,6 +28,13 @@ spec:
       - name: zwitscher-board
         image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-board"
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "196Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8081
         livenessProbe:

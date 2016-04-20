@@ -28,6 +28,13 @@ spec:
       - name: zwitscher-monitor
         image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-monitor"
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "196Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8989
         livenessProbe:

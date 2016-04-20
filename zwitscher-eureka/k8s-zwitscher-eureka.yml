@@ -28,6 +28,13 @@ spec:
       - name: zwitscher-eureka
         image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-eureka"
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "196Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8761
         livenessProbe:
