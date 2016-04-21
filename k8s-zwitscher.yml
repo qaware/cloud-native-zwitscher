@@ -42,7 +42,7 @@ spec:
             path: /admin/health
             port: 8761
           initialDelaySeconds: 60
-          timeoutSeconds: 5
+          timeoutSeconds: 30
         env:
         - name: JAVA_OPTS
           value: -Xmx196m
@@ -90,8 +90,8 @@ spec:
           httpGet:
             path: /admin/health
             port: 8888
-          initialDelaySeconds: 60
-          timeoutSeconds: 5
+          initialDelaySeconds: 90
+          timeoutSeconds: 30
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka
@@ -142,7 +142,7 @@ spec:
             path: /admin/health
             port: 8080
           initialDelaySeconds: 90
-          timeoutSeconds: 5
+          timeoutSeconds: 30
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka
@@ -193,7 +193,7 @@ spec:
             path: /admin/health
             port: 8081
           initialDelaySeconds: 90
-          timeoutSeconds: 5
+          timeoutSeconds: 30
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka
@@ -244,7 +244,7 @@ spec:
             path: /admin/health
             port: 8765
           initialDelaySeconds: 90
-          timeoutSeconds: 5
+          timeoutSeconds: 30
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka
@@ -295,7 +295,7 @@ spec:
             path: /admin/health
             port: 8989
           initialDelaySeconds: 120
-          timeoutSeconds: 5
+          timeoutSeconds: 30
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka

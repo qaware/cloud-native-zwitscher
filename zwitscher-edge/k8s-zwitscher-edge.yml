@@ -42,7 +42,7 @@ spec:
             path: /admin/health
             port: 8765
           initialDelaySeconds: 90
-          timeoutSeconds: 5
+          timeoutSeconds: 30
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka

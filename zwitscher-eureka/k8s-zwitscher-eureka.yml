@@ -42,7 +42,7 @@ spec:
             path: /admin/health
             port: 8761
           initialDelaySeconds: 60
-          timeoutSeconds: 5
+          timeoutSeconds: 30
         env:
         - name: JAVA_OPTS
           value: -Xmx196m
