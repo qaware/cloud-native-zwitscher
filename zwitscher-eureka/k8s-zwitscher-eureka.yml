@@ -30,10 +30,10 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "128Mi"
+            memory: "256Mi"
             cpu: "250m"
           limits:
-            memory: "196Mi"
+            memory: "512Mi"
             cpu: "500m"
         ports:
         - containerPort: 8761
@@ -45,4 +45,4 @@ spec:
           timeoutSeconds: 5
         env:
         - name: JAVA_OPTS
-          value: -Xmx128m
+          value: -Xmx196m
