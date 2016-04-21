@@ -127,11 +127,30 @@ $ ./gradlew removeDockerImage
 
 ### Kubernetes
 
-In order to run the showcase using Kubernetes on either AWS, GCE or Vagrantwe first
-need to upload the Docker images for the showcase to the Bintray registry so that
-the images can be downloaded by Kubernetes later on.
+#### Installation
 
-Tag the latest image according to the following convention by running the following command:
+Before you can run anything, you need to setup the actual Kubernetes installation you want
+to deploy the showcase to. For local development use Vagrant, otherwise choose a cloud provider such as AWS or GCE. There are 3 shell scripts provided (`k8s-setup-vagrant.sh`, `k8s-setup-aws.sh`, `k8s-setup-gce.sh`). For AWS and GCE you need to configure your environment
+properly and you need to have a paid account. For more details on the prerequisites read
+the official [Getting Started Guides](http://kubernetes.io/docs/getting-started-guides/).
+
+To verify that your Kubernetes cluster is alive and healthy, issue the following command:
+```shell
+kubectl.sh cluster-info
+```
+
+#### Preparation
+
+In order to run the showcase using Kubernetes on either AWS, GCE or Vagrant you
+need to Dockerize the showcase. If you plan to use AWS or GCE, stop reading here:
+the images are already available at the QAware OSS Bintray Docker registry.
+
+If you plan to deploy and run the showcase locally or you want to use your own
+Docker registry then continue. Basically, following the instructions above on how
+to build the Docker images using Gradle.
+
+Then tag the latest images by running the following command. You will have to substitute
+the `qaware-oss-docker-registry.bintray.io` registry URL with your custom URL.
 ```shell
 docker tag <IMAGE_ID> qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-eureka:<VERSION>
 docker tag <IMAGE_ID> qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-config:<VERSION>
@@ -155,20 +174,13 @@ docker push qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge
 docker push qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-monitor
 ```
 
-Alternatively you can also use Gradle to upload the Docker images to Bintray.
+Alternatively you can also use Gradle to upload the Docker images to your Bintray
+Docker registry.
 ```shell
 $ ./gradlew pushDockerImage -PbintrayUsername=<<INSERT USERNAME>> -PbintrayApiKey=<<INSERT API KEY>>
 ```
 
-Next you need to setup the actual Kubernetes nodes you want to deploy the showcase to.
-For local development use Vagrant, otherwise choose a cloud provider such as AWS or GCE.
-There are 3 shell scripts provided (`k8s-setup-vagrant.sh`, `k8s-setup-aws.sh`, `k8s-setup-gce.sh`). For AWS and GCE you need to configure your environment
-properly and you need to have a paid account.
-
-To verify that your Kubernetes cluster is alive and healthy, issue the following command:
-```shell
-kubectl.sh cluster-info
-```
+#### Deployments
 
 Now you can create the Kubernetes deployments one by one and see how the Zwitscher
 showcase becomes alive. In the project root directory issue the following commands:
@@ -192,9 +204,9 @@ kubectl.sh get pods,deployments,services
 kubectl.sh delete -f k8s-zwitscher.yml
 ```
 
-### DCOS/Mesos
+### DC/OS
 
-_To be continued..._
+_Soon to come..._
 
 
 ## References
