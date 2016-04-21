@@ -6,7 +6,7 @@ metadata:
     zwitscher: edge
 spec:
   # if your cluster supports it, uncomment the following to automatically create
-  # an external load-balanced IP for the frontend service. Do not use locally.
+  # an external load-balanced IP for the frontend service. Does not work locally.
   type: LoadBalancer
   ports:
   - port: 8765
@@ -19,6 +19,7 @@ metadata:
   name: zwitscher-edge
 spec:
   replicas: 1
+  minReadySeconds: 30
   template:
     metadata:
       labels:

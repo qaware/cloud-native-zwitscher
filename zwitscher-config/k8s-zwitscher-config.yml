@@ -5,9 +5,8 @@ metadata:
   labels:
     zwitscher: config
 spec:
-  # if your cluster supports it, uncomment the following to automatically create
-  # an external load-balanced IP for the frontend service. Do not use locally.
-  # type: LoadBalancer
+  # use NodePort here to be able to access the port on each node
+  type: NodePort
   ports:
   - port: 8888
   selector:
@@ -19,6 +18,7 @@ metadata:
   name: zwitscher-config
 spec:
   replicas: 1
+  minReadySeconds: 30
   template:
     metadata:
       labels:

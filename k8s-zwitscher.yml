@@ -5,9 +5,8 @@ metadata:
   labels:
     zwitscher: eureka
 spec:
-  # if your cluster supports it, uncomment the following to automatically create
-  # an external load-balanced IP for the frontend service. So not use locally.
-  # type: LoadBalancer
+  # use NodePort here to be able to access the port on each node
+  type: NodePort
   ports:
   - port: 8761
   selector:
@@ -19,6 +18,7 @@ metadata:
   name: zwitscher-eureka
 spec:
   replicas: 1
+  minReadySeconds: 30
   template:
     metadata:
       labels:
@@ -54,9 +54,8 @@ metadata:
   labels:
     zwitscher: config
 spec:
-  # if your cluster supports it, uncomment the following to automatically create
-  # an external load-balanced IP for the frontend service. Do not use locally.
-  # type: LoadBalancer
+  # use NodePort here to be able to access the port on each node
+  type: NodePort
   ports:
   - port: 8888
   selector:
@@ -68,6 +67,7 @@ metadata:
   name: zwitscher-config
 spec:
   replicas: 1
+  minReadySeconds: 30
   template:
     metadata:
       labels:
@@ -105,9 +105,8 @@ metadata:
   labels:
     zwitscher: service
 spec:
-  # if your cluster supports it, uncomment the following to automatically create
-  # an external load-balanced IP for the frontend service. Do not use locally.
-  # type: LoadBalancer
+  # use NodePort here to be able to access the port on each node
+  type: NodePort
   ports:
   - port: 8080
   selector:
@@ -119,6 +118,7 @@ metadata:
   name: zwitscher-service
 spec:
   replicas: 1
+  minReadySeconds: 30
   template:
     metadata:
       labels:
@@ -156,9 +156,8 @@ metadata:
   labels:
     zwitscher: board
 spec:
-  # if your cluster supports it, uncomment the following to automatically create
-  # an external load-balanced IP for the frontend service. Do not use locally.
-  # type: LoadBalancer
+  # use NodePort here to be able to access the port on each node
+  type: NodePort
   ports:
   - port: 8081
   selector:
@@ -170,6 +169,7 @@ metadata:
   name: zwitscher-board
 spec:
   replicas: 1
+  minReadySeconds: 30
   template:
     metadata:
       labels:
@@ -208,7 +208,7 @@ metadata:
     zwitscher: edge
 spec:
   # if your cluster supports it, uncomment the following to automatically create
-  # an external load-balanced IP for the frontend service. Do not use locally.
+  # an external load-balanced IP for the frontend service. Does not work locally.
   type: LoadBalancer
   ports:
   - port: 8765
@@ -221,6 +221,7 @@ metadata:
   name: zwitscher-edge
 spec:
   replicas: 1
+  minReadySeconds: 30
   template:
     metadata:
       labels:
@@ -258,9 +259,8 @@ metadata:
   labels:
     zwitscher: monitor
 spec:
-  # if your cluster supports it, uncomment the following to automatically create
-  # an external load-balanced IP for the frontend service. Do not use locally.
-  # type: LoadBalancer
+  # use NodePort here to be able to access the JMX port on each node
+  type: NodePort
   ports:
   - port: 8989
   selector:
@@ -272,6 +272,7 @@ metadata:
   name: zwitscher-monitor
 spec:
   replicas: 1
+  minReadySeconds: 30
   template:
     metadata:
       labels:
