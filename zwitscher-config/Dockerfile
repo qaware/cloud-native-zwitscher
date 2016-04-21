@@ -3,7 +3,7 @@ MAINTAINER QAware GmbH <qaware-oss@qaware.de>
 
 RUN mkdir -p /opt/zwitscher-config
 
-COPY build/libs/zwitscher-config-1.0.0.jar /opt/zwitscher-config/zwitscher-config.jar
+COPY build/libs/zwitscher-config-1.1.0.jar /opt/zwitscher-config/zwitscher-config.jar
 COPY src/main/docker/zwitscher-config.* /opt/zwitscher-config/
 
 RUN chmod 755 /opt/zwitscher-config/zwitscher-config.jar; chmod 755 /opt/zwitscher-config/zwitscher-config.sh
