@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: zwitscher-edge
-        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge:1.0.0"
+        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge:1.0.1"
         imagePullPolicy: Always
         resources:
           requests:
