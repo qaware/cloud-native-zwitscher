@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: zwitscher-board
-        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-board"
+        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-board:1.0.0"
         imagePullPolicy: Always
         resources:
           requests:
