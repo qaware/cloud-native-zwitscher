@@ -30,11 +30,11 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
+            memory: "128Mi"
+            cpu: "125m"
+          limits:
             memory: "256Mi"
             cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
         ports:
         - containerPort: 8761
         livenessProbe:
@@ -45,7 +45,7 @@ spec:
           timeoutSeconds: 30
         env:
         - name: JAVA_OPTS
-          value: -Xmx196m
+          value: -Xmx128m
 ---
 apiVersion: v1
 kind: Service
@@ -79,11 +79,11 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
+            memory: "128Mi"
+            cpu: "125m"
+          limits:
             memory: "256Mi"
             cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
         ports:
         - containerPort: 8888
         livenessProbe:
@@ -96,7 +96,7 @@ spec:
         - name: EUREKA_HOST
           value: zwitscher-eureka
         - name: JAVA_OPTS
-          value: -Xmx196m
+          value: -Xmx128m
 ---
 apiVersion: v1
 kind: Service
@@ -130,11 +130,11 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
             memory: "256Mi"
             cpu: "500m"
-          limits:
-            memory: "512Mi"
-            cpu: "750m"
         ports:
         - containerPort: 8080
         livenessProbe:
@@ -147,7 +147,7 @@ spec:
         - name: EUREKA_HOST
           value: zwitscher-eureka
         - name: JAVA_OPTS
-          value: -Xmx196m
+          value: -Xmx128m
 ---
 apiVersion: v1
 kind: Service
@@ -181,11 +181,11 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
             memory: "256Mi"
             cpu: "500m"
-          limits:
-            memory: "512Mi"
-            cpu: "750m"
         ports:
         - containerPort: 8081
         livenessProbe:
@@ -198,7 +198,7 @@ spec:
         - name: EUREKA_HOST
           value: zwitscher-eureka
         - name: JAVA_OPTS
-          value: -Xmx196m
+          value: -Xmx128m
 ---
 apiVersion: v1
 kind: Service
@@ -233,11 +233,11 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "500m"
+            memory: "128Mi"
+            cpu: "125m"
           limits:
-            memory: "512Mi"
-            cpu: "750m"
+            memory: "256Mi"
+            cpu: "250m"
         ports:
         - containerPort: 8765
         livenessProbe:
@@ -250,7 +250,7 @@ spec:
         - name: EUREKA_HOST
           value: zwitscher-eureka
         - name: JAVA_OPTS
-          value: -Xmx196m
+          value: -Xmx128m
 ---
 apiVersion: v1
 kind: Service
@@ -259,7 +259,7 @@ metadata:
   labels:
     zwitscher: monitor
 spec:
-  # use NodePort here to be able to access the JMX port on each node
+  # use NodePort here to be able to access the port on each node
   type: NodePort
   ports:
   - port: 8989
@@ -284,11 +284,11 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "196Mi"
-            cpu: "250m"
+            memory: "128Mi"
+            cpu: "125m"
           limits:
             memory: "256Mi"
-            cpu: "500m"
+            cpu: "250m"
         ports:
         - containerPort: 8989
         livenessProbe:

@@ -30,11 +30,11 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
             memory: "256Mi"
             cpu: "500m"
-          limits:
-            memory: "512Mi"
-            cpu: "750m"
         ports:
         - containerPort: 8080
         livenessProbe:
@@ -47,4 +47,4 @@ spec:
         - name: EUREKA_HOST
           value: zwitscher-eureka
         - name: JAVA_OPTS
-          value: -Xmx196m
+          value: -Xmx128m

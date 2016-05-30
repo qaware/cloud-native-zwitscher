@@ -31,7 +31,7 @@ zwitscherservice:
     DOCKER_COMPOSE: true
     EUREKA_HOST: zwitschereureka
     EUREKA_PORT: 8761
-    JAVA_OPTS: -Xmx196m -Dcom.sun.management.jmxremote.port=9080 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
+    JAVA_OPTS: -Xmx128m -Dcom.sun.management.jmxremote.port=9080 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
   ports:
     - "8080:8080"
     - "9080:9080"
@@ -47,7 +47,7 @@ zwitscherboard:
     DOCKER_COMPOSE: true
     EUREKA_HOST: zwitschereureka
     EUREKA_PORT: 8761
-    JAVA_OPTS: -Xmx196m -Dcom.sun.management.jmxremote.port=9081 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
+    JAVA_OPTS: -Xmx128m -Dcom.sun.management.jmxremote.port=9081 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
   ports:
     - "8081:8081"
     - "9081:9081"
