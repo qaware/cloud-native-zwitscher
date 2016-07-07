@@ -3,7 +3,7 @@
 
   "instances": 1,
   "cpus": 0.1,
-  "mem": 384,
+  "mem": 512,
 
   "container": {
     "type": "DOCKER",
