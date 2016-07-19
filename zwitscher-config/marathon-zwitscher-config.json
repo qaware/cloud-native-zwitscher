@@ -5,13 +5,15 @@
   "cpus": 0.1,
   "mem": 512,
 
+  "cmd": "/opt/java/latest/bin/java -Xmx256m -Dserver.port=$PORT0 -jar /opt/zwitscher-config/zwitscher-config.jar",
+
   "container": {
     "type": "DOCKER",
     "docker": {
       "image": "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-config:1.0.1",
       "network": "BRIDGE",
       "portMappings": [
-        { "hostPort": 8888, "containerPort": 8888, "protocol": "tcp", "servicePort": 8888}
+        { "containerPort": 0, "hostPort": 0, "protocol": "tcp" }
       ]
     }
   },

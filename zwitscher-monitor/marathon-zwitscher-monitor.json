@@ -5,6 +5,8 @@
   "cpus": 0.1,
   "mem": 512,
 
+  "cmd": "/opt/java/latest/bin/java -Xmx256m -Dserver.port=$PORT0 -jar /opt/zwitscher-monitor/zwitscher-monitor.jar",
+
   "container": {
     "type": "DOCKER",
     "docker": {
