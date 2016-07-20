@@ -2,7 +2,7 @@
   "id": "zwitscher-eureka",
 
   "instances": 1,
-  "cpus": 0.1,
+  "cpus": 0.2,
   "mem": 512,
 
   "container": {
