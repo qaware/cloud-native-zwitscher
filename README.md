@@ -231,6 +231,12 @@ Deploying all services at once:
 ./marathon-deploy-all.sh
 ```
 
+#### Troubleshooting
+
+* Download dauert zu lange
+* Zu wenig resourcen für VBox
+* 
+
 ## References
 
 * [Spring Initializr](https://start.spring.io)
