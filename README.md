@@ -233,9 +233,23 @@ Deploying all services at once:
 
 #### Troubleshooting
 
-* Download dauert zu lange
-* Zu wenig resourcen für VBox
-* 
+* *The download of the docker images takes longer than the health check grace
+period in Marathon.*
+This may lead to Marathon perpetually trying and failing to deploy a service.
+In case of this error, try downloading the images manually with Docker on the
+cluster workers.
+* *Not enough free memory on the VirtualBox Host.*
+This usually leads to a dead slow cluster and may cause spurious errors. ensure
+that you run the showcase on a host with at least 16 GB RAM, of which 13 GB must
+remain free.
+* *Other spurious errors.*
+The setup has a lot of moving parts that might break down. In case you run into
+errors that are not easily identifyable, try tearing down and re-creating the
+cluster:
+```shell
+vagrant destroy -f m1 a1 a2 a3 boot
+vagrant up m1 a1 a2 a3 boot
+```
 
 ## References
 
