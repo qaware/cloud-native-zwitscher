@@ -206,8 +206,50 @@ kubectl.sh delete -f k8s-zwitscher.yml
 
 ### DC/OS
 
-_Soon to come..._
+You need a DC/OS cluster with at least 3GB free RAM.
+That amounts to one instance of each service.
+You can use the DC/OS Vagrant to run a DC/OS cluster on your local machine,
+provided your computer has at least 16GB of RAM
+(https://github.com/dcos/dcos-vagrant).
 
+With DC/OS Vagrant installed, use the following command to spin up a properly
+sized cluster.
+```shell
+vagrant up m1 a1 a2 a3 boot
+```
+
+Each service comes with it's own Marathon config file. You can deploy the
+services one at a time or all at once.
+
+Example deployment of the config service:
+```shell
+curl -X POST http://m1.dcos:8080/v2/apps -H "Content-type: application/json" -d @zwitscher-config/marathon-zwitscher-config.json
+```
+
+Deploying all services at once:
+```shell
+./marathon-deploy-all.sh
+```
+
+#### Troubleshooting
+
+* *The download of the docker images takes longer than the health check grace
+period in Marathon.*
+This may lead to Marathon perpetually trying and failing to deploy a service.
+In case of this error, try downloading the images manually with Docker on the
+cluster workers.
+* *Not enough free memory on the VirtualBox Host.*
+This usually leads to a dead slow cluster and may cause spurious errors. ensure
+that you run the showcase on a host with at least 16 GB RAM, of which 13 GB must
+remain free.
+* *Other spurious errors.*
+The setup has a lot of moving parts that might break down. In case you run into
+errors that are not easily identifyable, try tearing down and re-creating the
+cluster:
+```shell
+vagrant destroy -f m1 a1 a2 a3 boot
+vagrant up m1 a1 a2 a3 boot
+```
 
 ## References
 
