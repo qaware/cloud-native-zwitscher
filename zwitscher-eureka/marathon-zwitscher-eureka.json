@@ -8,7 +8,7 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-eureka:1.0.1",
+      "image": "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-eureka:1.1.0",
       "network": "BRIDGE",
       "portMappings": [
         { "hostPort": 8761, "containerPort": 8761, "protocol": "tcp", "servicePort":8761}

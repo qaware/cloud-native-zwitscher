@@ -10,7 +10,7 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge:1.0.1",
+      "image": "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge:1.1.0",
       "network": "BRIDGE",
       "portMappings": [
         { "hostPort": 0, "containerPort": 8765, "protocol": "tcp"}
