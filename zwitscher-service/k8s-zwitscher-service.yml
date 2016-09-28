@@ -43,6 +43,11 @@ spec:
             port: 8080
           initialDelaySeconds: 90
           timeoutSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /admin/info
+            port: 8080
+          timeoutSeconds: 30
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka

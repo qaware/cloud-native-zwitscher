@@ -43,6 +43,11 @@ spec:
             port: 8989
           initialDelaySeconds: 120
           timeoutSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /admin/info
+            port: 8989
+          timeoutSeconds: 30
         env:
         - name: EUREKA_HOST
           value: zwitscher-eureka
