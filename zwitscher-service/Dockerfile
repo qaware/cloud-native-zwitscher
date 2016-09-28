@@ -8,5 +8,5 @@ COPY src/main/docker/zwitscher-service.* /opt/zwitscher-service/
 
 RUN chmod 755 /opt/zwitscher-service/zwitscher-service.jar; chmod 755 /opt/zwitscher-service/zwitscher-service.sh
 
-EXPOSE 8761
+EXPOSE 8080
 CMD /opt/zwitscher-service/zwitscher-service.sh

@@ -8,5 +8,5 @@ COPY src/main/docker/zwitscher-edge.* /opt/zwitscher-edge/
 
 RUN chmod 755 /opt/zwitscher-edge/zwitscher-edge.jar; chmod 755 /opt/zwitscher-edge/zwitscher-edge.sh
 
-EXPOSE 8761
+EXPOSE 8765
 CMD /opt/zwitscher-edge/zwitscher-edge.sh

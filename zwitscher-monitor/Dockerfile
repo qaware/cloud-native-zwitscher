@@ -8,5 +8,5 @@ COPY src/main/docker/zwitscher-monitor.* /opt/zwitscher-monitor/
 
 RUN chmod 755 /opt/zwitscher-monitor/zwitscher-monitor.jar; chmod 755 /opt/zwitscher-monitor/zwitscher-monitor.sh
 
-EXPOSE 8761
+EXPOSE 8989
 CMD /opt/zwitscher-monitor/zwitscher-monitor.sh
