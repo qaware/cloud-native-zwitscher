@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: zwitscher-edge
-        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge:1.0.1"
+        image: "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-edge:1.1.0"
         imagePullPolicy: Always
         resources:
           requests:
@@ -43,6 +43,11 @@ spec:
             path: /admin/health
             port: 8765
           initialDelaySeconds: 90
+          timeoutSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /admin/info
+            port: 8765
           timeoutSeconds: 30
         env:
         - name: EUREKA_HOST

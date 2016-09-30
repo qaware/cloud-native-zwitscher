@@ -160,7 +160,7 @@ docker tag <IMAGE_ID> qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-
 docker tag <IMAGE_ID> qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-monitor:<VERSION>
 ```
 `<IMAGE_ID>` - The image ID from the latest versioned image previously created.
-`<VERSION>` - Should be the actual Zwitscher showcase version, like 1.0.1. When not specified
+`<VERSION>` - Should be the actual Zwitscher showcase version, like 1.1.0. When not specified
 "latest" will be used as the Bintray version name.
 
 Use the Docker client push command to upload and publish your images (please use

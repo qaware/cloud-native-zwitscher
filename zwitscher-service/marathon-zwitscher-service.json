@@ -9,7 +9,7 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-service:1.0.1",
+      "image": "qaware-oss-docker-registry.bintray.io/zwitscher/zwitscher-service:1.1.0",
       "network": "BRIDGE",
       "portMappings": [
         { "containerPort": 0, "hostPort": 0, "protocol": "tcp" }
