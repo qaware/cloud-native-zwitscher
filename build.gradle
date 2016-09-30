@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.3.3.RELEASE'
+        springBootVersion = '1.4.1.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -59,7 +59,7 @@ subprojects {
 
     dependencyManagement {
         imports {
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.RELEASE"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.RELEASE"
         }
     }
 
