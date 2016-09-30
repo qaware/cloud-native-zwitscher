@@ -19,7 +19,5 @@ eureka:
     nonSecurePort: ${server.port:8080}
     appGroupName: ZWITSCHER
   client:
-    healthcheck:
-      enabled: true
     serviceUrl:
       defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
