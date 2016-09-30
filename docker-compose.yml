@@ -1,5 +1,5 @@
 zwitschereureka:
-  image: "zwitscher-eureka:1.1.0"
+  image: "zwitscher-eureka:1.2.0"
   hostname: zwitschereureka
   environment:
     JAVA_OPTS: -Xmx128m -Dcom.sun.management.jmxremote.port=9761 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
@@ -8,7 +8,7 @@ zwitschereureka:
     - "9761:9761"
 
 zwitscherconfig:
-  image: "zwitscher-config:1.1.0"
+  image: "zwitscher-config:1.2.0"
   hostname: zwitscherconfig
   links:
     - zwitschereureka
@@ -22,7 +22,7 @@ zwitscherconfig:
     - "9888:9888"
 
 zwitscherservice:
-  image: "zwitscher-service:1.1.0"
+  image: "zwitscher-service:1.2.0"
   hostname: zwitscherservice
   links:
     - zwitschereureka
@@ -37,7 +37,7 @@ zwitscherservice:
     - "9080:9080"
 
 zwitscherboard:
-  image: "zwitscher-board:1.1.0"
+  image: "zwitscher-board:1.2.0"
   hostname: zwitscherboard
   links:
     - zwitschereureka
@@ -53,7 +53,7 @@ zwitscherboard:
     - "9081:9081"
 
 zwitscheredge:
-  image: "zwitscher-edge:1.1.0"
+  image: "zwitscher-edge:1.2.0"
   hostname: zwitscheredge
   links:
     - zwitschereureka
@@ -70,7 +70,7 @@ zwitscheredge:
     - "9765:9765"
 
 zwitschermonitor:
-  image: "zwitscher-monitor:1.1.0"
+  image: "zwitscher-monitor:1.2.0"
   hostname: zwitschermonitor
   links:
     - zwitschereureka
