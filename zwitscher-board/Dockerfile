@@ -3,7 +3,7 @@ MAINTAINER QAware GmbH <qaware-oss@qaware.de>
 
 RUN mkdir -p /opt/zwitscher-board
 
-COPY build/libs/zwitscher-board-1.1.0.jar /opt/zwitscher-board/zwitscher-board.jar
+COPY build/libs/zwitscher-board-1.2.0.jar /opt/zwitscher-board/zwitscher-board.jar
 COPY src/main/docker/zwitscher-board.* /opt/zwitscher-board/
 
 RUN chmod 755 /opt/zwitscher-board/zwitscher-board.jar; chmod 755 /opt/zwitscher-board/zwitscher-board.sh
