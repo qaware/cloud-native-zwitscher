@@ -4,4 +4,9 @@ info:
 server:
   port: 8080
 
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 30000
